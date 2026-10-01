@@ -1,4 +1,20 @@
-# JEV Bias Evaluation — Public Reproducibility Release
+<h1 align="center">More Choices, Fewer Decisions</h1>
+
+<p align="center">
+  <strong>Ordinal-Scale Bias in JEV-like Direct-Decision Models</strong>
+</p>
+
+<p align="center">
+  <a href="https://arxiv.org/abs/2609.38827">
+    <img src="https://img.shields.io/badge/arXiv-2609.38827-B31B1B?logo=arxiv&logoColor=white" alt="arXiv paper">
+  </a>
+  <a href="https://huggingface.co/Glax147/kev-0.8b-ba-lora">
+    <img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-KEV--0.8B--BA--LoRA-FFD21E" alt="KEV-0.8B BA-LoRA on Hugging Face">
+  </a>
+  <a href="https://huggingface.co/Glax147/kev-4b-ba-lora">
+    <img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-KEV--4B--BA--LoRA-FFD21E" alt="KEV-4B BA-LoRA on Hugging Face">
+  </a>
+</p>
 
 This GitHub-ready folder consolidates the code, frozen selection identities,
 released predictions, environment requirements, and model/data download tools
