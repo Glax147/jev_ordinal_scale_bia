@@ -26,8 +26,8 @@ source downloaders, compact IDs, and per-row SHA-256 checks.
 
 | Model | Versioned Hugging Face snapshot | Initialization | Qwen base |
 |---|---|---|---|
-| KEV-0.8B + BA-LoRA | [`Glax147/kev-0.8b-ba-lora@6f3864f`](https://huggingface.co/Glax147/kev-0.8b-ba-lora/tree/6f3864febcef263cd5d520d5520c0c5aa92472f0) | `jaredpalmer/kev-0.8b@9a45d25` | `Qwen/Qwen3.5-0.8B-Base@dc7cdfe2` |
-| KEV-4B + BA-LoRA | [`Glax147/kev-4b-ba-lora@3d5932a`](https://huggingface.co/Glax147/kev-4b-ba-lora/tree/3d5932a57af805c36e3ce51256316997b8494e31) | `jaredpalmer/kev-4b@139fdd94` | `Qwen/Qwen3.5-4B-Base@1001bb4d` |
+| KEV-0.8B + BA-LoRA | `Glax147/kev-0.8b-ba-lora@6f3864f` | `jaredpalmer/kev-0.8b@9a45d25` | `Qwen/Qwen3.5-0.8B-Base@dc7cdfe2` |
+| KEV-4B + BA-LoRA | `Glax147/kev-4b-ba-lora@3d5932a` | `jaredpalmer/kev-4b@139fdd94` | `Qwen/Qwen3.5-4B-Base@1001bb4d` |
 
 The reproducibility configuration pins the complete published snapshots to
 Hugging Face revisions `6f3864febcef263cd5d520d5520c0c5aa92472f0`
