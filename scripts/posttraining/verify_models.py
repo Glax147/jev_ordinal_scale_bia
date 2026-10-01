@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2] / "posttraining"
 MODEL_SPECS = [
     {"directory": "kev-0.8b", "repository": "jaredpalmer/kev-0.8b", "revision": "9a45d25eb2ab761841196625383fa1dff0e56c1e"},
     {"directory": "kev-4b", "repository": "jaredpalmer/kev-4b", "revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101"},

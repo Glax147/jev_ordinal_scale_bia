@@ -50,16 +50,16 @@ Windows PowerShell:
 
 ```powershell
 Set-Location "C:\path\to\jev_bias_evaluation_public"
-.\bootstrap.ps1 -Profile analysis
+.\scripts\setup.ps1 -Profile analysis
 ```
 
 Linux/macOS:
 
 ```bash
-PYTHON_BIN=python3.13 bash bootstrap.sh
+PYTHON_BIN=python3.13 bash scripts/setup.sh
 ```
 
-This creates `.venv`, installs the top-level pinned requirement files, and
+This creates `.venv`, installs the pinned analysis profile from `requirements/`, and
 verifies the public indexes, released results, post-training assets, and code
 tree. It does not download dataset text or model weights.
 
@@ -73,27 +73,23 @@ Outputs go to `outputs/metrics/` and `outputs/figures/`.
 
 ## 2. Environment profiles
 
-Requirements are split by purpose:
+All dependency profiles live in one directory:
 
 ```text
-requirements/analysis.txt   metrics and figures
-requirements/bootstrap.txt  pinned pip/setuptools/wheel bootstrap tools
-requirements/data.txt       source/model download tools
-requirements/dev.txt        integrity tests
-requirements/kev.txt        GPU/local KEV inference
-requirements.txt            analysis + hosted-API runner + tests
-requirements-data.txt       analysis + upstream dataset tools
-requirements-kev.txt        complete KEV profile
+requirements/base.txt          analysis, figures, API runner, and tests
+requirements/data.txt          base profile plus dataset reconstruction
+requirements/kev.txt           base profile plus local KEV inference
+requirements/posttraining.txt  exact GPU post-training environment
 ```
 
-Install without the wrapper if preferred:
+Install a profile directly if preferred:
 
 ```bash
-python -m pip install -r requirements.txt
+python -m pip install -r requirements/base.txt
 python -m pip install --no-deps -e .
 ```
 
-For local KEV inference, use Python 3.13 and install `requirements-kev.txt`.
+For local KEV inference, use Python 3.13 and install `requirements/kev.txt`.
 Choose a PyTorch build appropriate for the installed CUDA driver if the pinned
 wheel is not compatible with the machine.
 
@@ -104,7 +100,7 @@ sources, reconstruct all three panels, and verify every reconstructed prompt
 against its committed `paper-v1` canonical row hash, run:
 
 ```bash
-python -m pip install -r requirements-data.txt
+python -m pip install -r requirements/data.txt
 python scripts/rebuild_inputs.py --download --allow-unpinned
 python scripts/verify_artifacts.py
 ```
@@ -112,13 +108,13 @@ python scripts/verify_artifacts.py
 Equivalent Windows bootstrap shortcut:
 
 ```powershell
-.\bootstrap.ps1 -RebuildInputs -AllowUnpinnedData
+.\scripts\setup.ps1 -RebuildInputs -AllowUnpinnedData
 ```
 
 Equivalent Linux/macOS invocation:
 
 ```bash
-REBUILD_INPUTS=1 ALLOW_UNPINNED_DATA=1 bash bootstrap.sh
+REBUILD_INPUTS=1 ALLOW_UNPINNED_DATA=1 bash scripts/setup.sh
 ```
 
 Rebuilt files are written to the git-ignored `artifacts/frozen_inputs/` folder.
@@ -145,7 +141,7 @@ Metric and figure reproduction from the released predictions does not require
 dataset downloads. To fetch snapshots without rebuilding prompts:
 
 ```bash
-python -m pip install -r requirements-data.txt
+python -m pip install -r requirements/data.txt
 python scripts/download_datasets.py --sources pinned
 ```
 
@@ -165,7 +161,7 @@ Download the adapter **and its Qwen3.5 base** into the bundle-local Hugging Face
 cache:
 
 ```powershell
-.\bootstrap.ps1 -Profile kev -Models "kev-0.8b,kev-4b"
+.\scripts\setup.ps1 -Profile kev -Models "kev-0.8b,kev-4b"
 ```
 
 or:
@@ -262,15 +258,16 @@ prompt's canonical row hash. Manifests are not silently rewritten.
 ## 7. Optional BA-LoRA-inspired post-training
 
 `posttraining/` contains the frozen 32,000-row training index, pinned source and
-model manifests, exact requirements, integration patches, training/evaluation
-scripts, and the released 0.8B/4B post-training outputs. It uses the `main40`
+model manifests, integration patches, and the released 0.8B/4B post-training
+outputs. Its executable pipeline is centralized in `scripts/posttraining/`, and
+its environment is pinned in `requirements/posttraining.txt`. It uses the `main40`
 evaluation input reconstructed in `artifacts/frozen_inputs/` instead of
 redistributing or duplicating 200,000 prompts. Rebuild that input first with
 the command in Section 3; model weights and public raw training files are
 downloaded only when requested:
 
 ```bash
-bash posttraining/scripts/one_click_train.sh 0.8b 4b
+bash scripts/posttraining/run.sh 0.8b 4b
 ```
 
 The method adapts BA-LoRA ideas to KEV choice logits; the official BA-LoRA code
@@ -291,9 +288,9 @@ data/indexes/            IDs, construction metadata, and canonical row hashes
 requirements/            pinned environment profiles
 results/released/        12 canonical compressed prediction files
 results/MANIFEST.json    result/archive/content/stable-prediction hashes
-posttraining/            optional KEV BA-LoRA code, hashes, and released outputs
+posttraining/            optional KEV BA-LoRA configs, hashes, and released outputs
 src/jev_bias/            deterministic I/O, sampling, metrics, integrity helpers
-scripts/                 setup, upstream reconstruction, inference, analysis, plots
+scripts/                 all setup, reconstruction, inference, analysis, and training entry points
 tests/                   determinism and metric tests
 artifacts/               extracted/downloaded runtime assets (ignored)
 outputs/                 regenerated metrics and figures (ignored)

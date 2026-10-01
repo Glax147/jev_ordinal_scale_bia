@@ -10,7 +10,7 @@ Install the data profile, download upstream sources, rebuild the exact
 `paper-v1` prompts, and verify every canonical row hash with:
 
 ```bash
-python -m pip install -r requirements-data.txt
+python -m pip install -r requirements/data.txt
 python scripts/rebuild_inputs.py --download --allow-unpinned
 python scripts/verify_artifacts.py
 ```

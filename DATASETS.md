@@ -17,7 +17,7 @@ Rebuild the prompts from their original providers and validate every row against
 the committed canonical hash with:
 
 ```bash
-python -m pip install -r requirements-data.txt
+python -m pip install -r requirements/data.txt
 python scripts/rebuild_inputs.py --download --allow-unpinned
 python scripts/verify_artifacts.py
 ```

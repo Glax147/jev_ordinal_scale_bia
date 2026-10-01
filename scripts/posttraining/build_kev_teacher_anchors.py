@@ -16,7 +16,7 @@ from kev.checkpoint import Checkpoint, LoadOptions
 from kev.data import load_records, materialize
 from kev.model import resolve_model_source, training_context
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2] / "posttraining"
 EXPECTED_RECORDS = 32_000
 
 

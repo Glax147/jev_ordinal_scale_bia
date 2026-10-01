@@ -16,15 +16,13 @@ from jev_bias.io import sha256_file
 
 TRACKED_DIRS = (
     "configs", "requirements", "scripts", "src", "tests",
-    "posttraining/configs", "posttraining/manifests", "posttraining/patches", "posttraining/scripts",
+    "posttraining/configs", "posttraining/manifests", "posttraining/patches",
 )
 ROOT_FILES = (
-    ".env.example", ".gitignore", ".python-version", "bootstrap.ps1", "bootstrap.sh",
+    ".env.example", ".gitattributes", ".gitignore", ".python-version",
     "CITATION.cff", "DATASETS.md", "LICENSE", "THIRD_PARTY.md", "pyproject.toml", "README.md",
     "PUBLIC_RELEASE.json", "data/frozen_inputs/README.md",
-    "requirements.txt", "requirements-data.txt", "requirements-kev.txt", "requirements-posttraining.txt",
-    "posttraining/README.md", "posttraining/requirements.txt", "reproduce.ps1",
-    "reproduce.sh", "RESULTS.md",
+    "posttraining/README.md", "RESULTS.md",
 )
 ASSET_MANIFESTS = (
     "data/frozen_inputs/MANIFEST.json",

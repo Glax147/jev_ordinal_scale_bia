@@ -11,7 +11,8 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$Repo = Split-Path -Parent $MyInvocation.MyCommand.Path
+$ScriptsDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$Repo = Split-Path -Parent $ScriptsDir
 $Venv = Join-Path $Repo ".venv"
 $PythonParts = $Python -split " "
 $PythonExe = $PythonParts[0]
@@ -24,9 +25,7 @@ if (-not (Test-Path -LiteralPath $Venv)) {
 $VenvPython = Join-Path $Venv "Scripts\python.exe"
 & $VenvPython -c "import sys; raise SystemExit(0 if sys.version_info[:2] == (3, 13) else 'Python 3.13 is required')"
 if ($LASTEXITCODE -ne 0) { throw "Python 3.13 is required by this bundle." }
-& $VenvPython -m pip install -r (Join-Path $Repo "requirements\bootstrap.txt")
-if ($LASTEXITCODE -ne 0) { throw "Bootstrap-tool installation failed with exit code $LASTEXITCODE." }
-$Requirements = if ($Profile -eq "kev") { "requirements-kev.txt" } else { "requirements.txt" }
+$Requirements = if ($Profile -eq "kev") { "requirements\kev.txt" } else { "requirements\base.txt" }
 if ($Models -and $Profile -ne "kev") {
     throw "Model download/rerun dependencies require -Profile kev."
 }
@@ -34,7 +33,7 @@ if ($Profile -eq "kev") { $env:PIP_NO_BUILD_ISOLATION = "1" }
 & $VenvPython -m pip install -r (Join-Path $Repo $Requirements)
 if ($LASTEXITCODE -ne 0) { throw "Requirement installation failed with exit code $LASTEXITCODE." }
 if ($DownloadUpstreamData -or $RebuildInputs) {
-    & $VenvPython -m pip install -r (Join-Path $Repo "requirements-data.txt")
+    & $VenvPython -m pip install -r (Join-Path $Repo "requirements\data.txt")
     if ($LASTEXITCODE -ne 0) { throw "Dataset requirement installation failed with exit code $LASTEXITCODE." }
 }
 & $VenvPython -m pip install --no-deps -e $Repo

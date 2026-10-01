@@ -17,7 +17,7 @@ from pathlib import Path
 from huggingface_hub import hf_hub_download
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2] / "posttraining"
 RAW = ROOT / "data" / "raw"
 
 HF_SOURCES = {

@@ -1,3 +1,0 @@
--r requirements/analysis.txt
--r requirements/api.txt
--r requirements/dev.txt

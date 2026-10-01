@@ -2,7 +2,7 @@
   "kev_code": {
     "repository": "https://github.com/jaredpalmer/kev.git",
     "revision": "f2bb629d670f5b746f712fc05550a098526c836b",
-    "note": "Commit recorded for the released baseline evaluation. Install through requirements-kev.txt."
+    "note": "Commit recorded for the released baseline evaluation. Install through requirements/kev.txt."
   },
   "models": {
     "kev-0.8b": {

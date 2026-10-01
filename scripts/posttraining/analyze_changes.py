@@ -12,8 +12,8 @@ from collections import Counter
 from itertools import zip_longest
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-BUNDLE_ROOT = ROOT.parent
+BUNDLE_ROOT = Path(__file__).resolve().parents[2]
+ROOT = BUNDLE_ROOT / "posttraining"
 PAIRS = {
     "kev-0.8b": (
         BUNDLE_ROOT / "results/released/kev-0.8b__main-40datasets__200000.jsonl.gz",

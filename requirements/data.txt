@@ -1,3 +1,4 @@
+-r base.txt
 tqdm==4.67.1
 pyarrow==25.0.1
 huggingface-hub==1.32.0

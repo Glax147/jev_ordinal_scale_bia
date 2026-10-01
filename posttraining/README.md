@@ -6,7 +6,7 @@ The public package omits frozen dataset-text ZIPs. Before running the one-click
 training workflow, reconstruct `main40` from the repository root:
 
 ```bash
-python -m pip install -r requirements-data.txt
+python -m pip install -r requirements/data.txt
 python scripts/rebuild_inputs.py --download --allow-unpinned
 ```
 
@@ -42,7 +42,7 @@ The training datasets are IBM Argument Quality, HelpSteer2 Correctness, Civil Co
 Recompute the paired before/after table (40 datasets × 2 model sizes) with:
 
 ```bash
-python posttraining/scripts/analyze_changes.py
+python scripts/posttraining/analyze_changes.py
 ```
 
 The table reports Accuracy, `Uarg`, raw `R`, bias distance `D_R=|R-1|`, TVD,
@@ -53,14 +53,14 @@ normalized MAE, QWK, `Usoft`, and margin before/after plus their changes.
 Linux, Python 3.13, Git, a CUDA-capable PyTorch setup, and sufficient GPU memory are required. From the bundle root:
 
 ```bash
-bash posttraining/scripts/one_click_train.sh 0.8b 4b
+bash scripts/posttraining/run.sh 0.8b 4b
 ```
 
 Run only one size by passing either `0.8b` or `4b`. The pipeline:
 
 1. clones KEV at the commit in `configs/posttraining.json` (set `CLONE_BA_LORA_REFERENCE=1` only to fetch the unused reference source);
 2. applies the checked-in KEV patches;
-3. creates the environment from `posttraining/requirements.txt`;
+3. creates the environment from `requirements/posttraining.txt`;
 4. downloads the exact model revisions and verifies every expected model file;
 5. downloads the eight pinned public training sources;
 6. reconstructs the exact training rows and verifies every ID, label, and normalized-text hash;
@@ -70,13 +70,13 @@ Run only one size by passing either `0.8b` or `4b`. The pipeline:
 For preparation without training:
 
 ```bash
-bash posttraining/scripts/bootstrap.sh
+bash scripts/posttraining/setup.sh
 cd posttraining/code/kev
-uv run --no-sync python ../../scripts/download_models.py 0.8b 4b
-uv run --no-sync python ../../scripts/download_raw_data.py
-uv run --no-sync python ../../scripts/prepare_kev_training_data.py
-uv run --no-sync python ../../scripts/verify_package.py
-uv run --no-sync python ../../scripts/verify_models.py --full-hash
+uv run --no-sync python ../../../scripts/posttraining/download_models.py 0.8b 4b
+uv run --no-sync python ../../../scripts/posttraining/download_raw_data.py
+uv run --no-sync python ../../../scripts/posttraining/prepare_kev_training_data.py
+uv run --no-sync python ../../../scripts/posttraining/verify_package.py
+uv run --no-sync python ../../../scripts/posttraining/verify_models.py --full-hash
 ```
 
 ## Reproducibility boundary

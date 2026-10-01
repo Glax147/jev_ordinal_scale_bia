@@ -150,7 +150,7 @@ def main() -> None:
         raise RuntimeError("Released-result manifest mismatch; a result file is missing, changed or corrupted")
     print(f"OK released predictions: {len(observed_results['files'])} files")
 
-    posttraining_builder = runpy.run_path(str(ROOT / "posttraining/scripts/build_manifest.py"))["build"]
+    posttraining_builder = runpy.run_path(str(ROOT / "scripts/posttraining/build_manifest.py"))["build"]
     observed_posttraining = posttraining_builder()
     expected_posttraining = load(ROOT / "posttraining/MANIFEST.json")
     if observed_posttraining != expected_posttraining:

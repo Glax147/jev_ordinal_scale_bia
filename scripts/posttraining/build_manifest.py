@@ -10,8 +10,10 @@ import json
 from collections import Counter
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-BUNDLE_ROOT = ROOT.parent
+BUNDLE_ROOT = Path(__file__).resolve().parents[2]
+ROOT = BUNDLE_ROOT / "posttraining"
+SCRIPT_ROOT = BUNDLE_ROOT / "scripts" / "posttraining"
+REQUIREMENTS_PATH = BUNDLE_ROOT / "requirements" / "posttraining.txt"
 EXCLUDED_TOP_LEVEL = {".cache", "artifacts", "code", "data", "logs", "models", "runs"}
 EXCLUDED_RESULT_DIRS = {"generated"}
 GENERATED_NAMES = {"__pycache__", ".pytest_cache", ".ruff_cache"}
@@ -70,6 +72,18 @@ def build() -> dict:
             "bytes": path.stat().st_size,
             "sha256": sha256_file(path),
         })
+    for path in sorted(p for p in SCRIPT_ROOT.rglob("*") if p.is_file() and not any(part in GENERATED_NAMES for part in p.parts)):
+        files.append({
+            "file": path.relative_to(BUNDLE_ROOT).as_posix(),
+            "bytes": path.stat().st_size,
+            "sha256": sha256_file(path),
+        })
+    files.append({
+        "file": REQUIREMENTS_PATH.relative_to(BUNDLE_ROOT).as_posix(),
+        "bytes": REQUIREMENTS_PATH.stat().st_size,
+        "sha256": sha256_file(REQUIREMENTS_PATH),
+    })
+    files.sort(key=lambda item: item["file"])
     tree = hashlib.sha256()
     for item in files:
         tree.update(f"{item['sha256']}  {item['bytes']}  {item['file']}\n".encode())

@@ -2,6 +2,11 @@
   "checkpoint_replay": "checkpoints-released-full-main40-replay-not-yet-independently-verified",
   "files": [
     {
+      "bytes": 6217,
+      "file": "README.md",
+      "sha256": "6973a1df10d5ee791f50c54cf332a888909ab9a70e9158f61986454f5c964878"
+    },
+    {
       "bytes": 1900011,
       "file": "configs/fixed_train_index_32000.jsonl.gz",
       "sha256": "b57ff04adfb613405e30a1b4c70a78352b9381d25f6ff7837e3359a0edc5aed7"
@@ -37,13 +42,8 @@
       "sha256": "6736e7ad29e79efa26887db4f379b7879b3eae3335b1ca7c8e2e487049ecea65"
     },
     {
-      "bytes": 6153,
-      "file": "README.md",
-      "sha256": "408f36123a2c43a48baa9b7a969f217424050b38192b99dfb93081f74d37d121"
-    },
-    {
       "bytes": 359,
-      "file": "requirements.txt",
+      "file": "requirements/posttraining.txt",
       "sha256": "2f2996776d21b5fe7f418fdd8d282c768a0fb77a49eb0b7c84ef9f0f9eaaba6c"
     },
     {
@@ -67,78 +67,78 @@
       "sha256": "eefdc5c6656f741aa4861273b48220a99e9adf570f167a4ceb6b25e7ed2c79e6"
     },
     {
-      "bytes": 9423,
-      "file": "scripts/analyze_changes.py",
-      "sha256": "7786000fef746764aa1b78b8a9261efadca8453d1f071409470b76527c2e35f7"
+      "bytes": 9440,
+      "file": "scripts/posttraining/analyze_changes.py",
+      "sha256": "3308e0d9dce007dca0bd9656be32730823b37059f9a085b936f9c588f747c21d"
     },
     {
-      "bytes": 1114,
-      "file": "scripts/bootstrap.sh",
-      "sha256": "708c327f369cb74710b80502a9a06254d8d489b6af61e2de2999770b651d3957"
+      "bytes": 9500,
+      "file": "scripts/posttraining/build_kev_teacher_anchors.py",
+      "sha256": "472c45bd9bf6bbfa87952ae2d7bc39d3f7025e4c5eeab8ebb557383716b1bf01"
     },
     {
-      "bytes": 9483,
-      "file": "scripts/build_kev_teacher_anchors.py",
-      "sha256": "d3b1b0f3c4d89917874216b530ae2c58f670d820e7253774c281cbb360a0338a"
+      "bytes": 7980,
+      "file": "scripts/posttraining/build_manifest.py",
+      "sha256": "60d10ab5e7bda6173048e807535e6bd6b23e4e79a2596dc13bc5f54f9131289c"
     },
     {
-      "bytes": 7284,
-      "file": "scripts/build_manifest.py",
-      "sha256": "99ed140b7073bc2b79861d0c977dd2a825ac4cf917ed9b80d721ecb211242a53"
+      "bytes": 3872,
+      "file": "scripts/posttraining/download_models.py",
+      "sha256": "2b74c728fa95fe5abbfdb694f00ee1053d8fa4c83ba039b86e77f0e1e9ffd7b8"
     },
     {
-      "bytes": 3855,
-      "file": "scripts/download_models.py",
-      "sha256": "2b31848f045bb07d473d0e76d89b0e67ab034424aad4519d2cfc6357cf0a1be0"
-    },
-    {
-      "bytes": 4583,
-      "file": "scripts/download_raw_data.py",
-      "sha256": "49ee65b8938f8a333d20d83eda8497369760646233bfb6ec239e3b1b0690ff01"
+      "bytes": 4600,
+      "file": "scripts/posttraining/download_raw_data.py",
+      "sha256": "abf56c4a9b1ac70f053f565787c9fdcef5fe392513d381075ea4136a04174025"
     },
     {
       "bytes": 16137,
-      "file": "scripts/evaluate_kev_bias40.py",
+      "file": "scripts/posttraining/evaluate_kev_bias40.py",
       "sha256": "4d5631fd907495fe0afab7b9e3ea2ea4db2a9bd9ad98c5c64d0f4e8d46414b39"
     },
     {
-      "bytes": 2162,
-      "file": "scripts/one_click_train.sh",
-      "sha256": "abe324e691ddfd0eccd47299b07a79a4d93f4e9b51dda43b6794a0f17ebe47f2"
-    },
-    {
       "bytes": 2997,
-      "file": "scripts/package_results.py",
+      "file": "scripts/posttraining/package_results.py",
       "sha256": "3d3e61bfe418c5f87caf66cf141abe779b0cc1d3abe6ff97d8965e55b9b80b12"
     },
     {
-      "bytes": 24926,
-      "file": "scripts/prepare_kev_training_data.py",
-      "sha256": "96a87d0dc0be07146a235591f10d9cdccdb7c8b239a45e7408edbfc559aa734a"
+      "bytes": 2942,
+      "file": "scripts/posttraining/prepare_code.sh",
+      "sha256": "c874e51d86ee0c31eff18f70abd9ab0c116e0776fb1147f304aa68d5183d09fe"
     },
     {
-      "bytes": 3770,
-      "file": "scripts/run_kev_ba_lora.sh",
-      "sha256": "b7045cea5a2f8e9274aef99cfe4c7a745e6e9c0648225af456f156c9d657beaa"
+      "bytes": 24943,
+      "file": "scripts/posttraining/prepare_kev_training_data.py",
+      "sha256": "6b995fe2ec05eff609fb0edd86060818d8f6d1d7fa805fdc6eec3f52ea2ec8ea"
     },
     {
-      "bytes": 2903,
-      "file": "scripts/setup_code.sh",
-      "sha256": "86b1ba1010aecd98ba8bb95bdb03d228600980606b3069c16800539f83beac11"
+      "bytes": 2164,
+      "file": "scripts/posttraining/run.sh",
+      "sha256": "b8d6d7443c7abf2e8beae7f3c2164b4ec987acda11999d06c85d3f2d261c18cd"
     },
     {
-      "bytes": 3757,
-      "file": "scripts/verify_models.py",
-      "sha256": "238b9b271ba40d1ec5c86b98638f5a01ead8d80dbd9c70ea543ee7c7b942e35f"
+      "bytes": 1212,
+      "file": "scripts/posttraining/setup.sh",
+      "sha256": "de557c6b6985506dbbdcb85ad5af6d782876b8881ed96c8c5ac888deebe87723"
     },
     {
-      "bytes": 6618,
-      "file": "scripts/verify_package.py",
-      "sha256": "9cb7729707de32528e408c8cd1c6e070278da036ef1aff069ada81a2fe338a9d"
+      "bytes": 3844,
+      "file": "scripts/posttraining/train.sh",
+      "sha256": "fbc7861e13b83634050ee28264f83dde807a53f7af9232854c0358cce9b8246d"
+    },
+    {
+      "bytes": 3774,
+      "file": "scripts/posttraining/verify_models.py",
+      "sha256": "e64a69b6b399ff88ba8a496562c13de65645077090836b94a4758561bda7279a"
+    },
+    {
+      "bytes": 6635,
+      "file": "scripts/posttraining/verify_package.py",
+      "sha256": "f41e8cd49516e8e843f0a3169bde0039ce58070fadd40568c19f553566b1eaa9"
     }
   ],
   "hash_algorithm": "sha256",
-  "release_tree_sha256": "fac87ec7b79fdb4c9a2c57d706063c542c5c9b18a390ab11b0bd9e2fec708c65",
+  "release_tree_sha256": "611244c795eb2b13a875a7eb0b29ac056a718e2fede7d37ef2e25b7dd737005c",
   "released_checkpoints": [
     {
       "initialization_repository": "jaredpalmer/kev-0.8b",

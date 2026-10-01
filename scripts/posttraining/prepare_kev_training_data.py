@@ -27,7 +27,7 @@ from typing import Iterable, Iterator
 import pyarrow.parquet as pq
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2] / "posttraining"
 RAW = ROOT / "data" / "raw"
 OUT = ROOT / "data" / "prepared"
 SEED = 20260928

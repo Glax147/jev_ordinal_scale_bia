@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+PT_DIR="$REPO_ROOT/posttraining"
 CODE_DIR="$PT_DIR/code"
 KEV_REV="3e1cd3bb588a388a06827443380befece23e68c7"
 BA_LORA_REV="1fe17ab3e39dcfefc630cdf386d69d942c61f16c"

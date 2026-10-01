@@ -19,7 +19,7 @@ def verify_installed_kev(expected_revision: str, *, allow_unverified: bool = Fal
     if commit != expected_revision and not allow_unverified:
         raise RuntimeError(
             "Installed KEV code is not verified at the configured evaluation commit: "
-            f"observed={commit!r}, expected={expected_revision!r}. Install requirements-kev.txt "
+            f"observed={commit!r}, expected={expected_revision!r}. Install requirements/kev.txt "
             "or explicitly use --allow-unverified-kev-code for a non-paper run."
         )
     package_root = Path(kev.__file__).resolve().parent

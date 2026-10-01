@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "$0")" && pwd)"
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 PYTHON_BIN="${PYTHON_BIN:-python3.13}"
 PROFILE="${PROFILE:-analysis}"
 MODELS="${MODELS:-}"
@@ -23,16 +23,15 @@ if [[ ! -d "$ROOT/.venv" ]]; then
 fi
 PY="$ROOT/.venv/bin/python"
 "$PY" -c 'import sys; raise SystemExit(0 if sys.version_info[:2] == (3, 13) else "Python 3.13 is required")'
-"$PY" -m pip install -r "$ROOT/requirements/bootstrap.txt"
 if [[ "$PROFILE" == "kev" ]]; then
   export PIP_NO_BUILD_ISOLATION=1
-  "$PY" -m pip install -r "$ROOT/requirements-kev.txt"
+  "$PY" -m pip install -r "$ROOT/requirements/kev.txt"
 else
-  "$PY" -m pip install -r "$ROOT/requirements.txt"
+  "$PY" -m pip install -r "$ROOT/requirements/base.txt"
 fi
 "$PY" -m pip install --no-deps -e "$ROOT"
 if [[ "$DOWNLOAD_UPSTREAM_DATA" == "1" || "$REBUILD_INPUTS" == "1" ]]; then
-  "$PY" -m pip install -r "$ROOT/requirements-data.txt"
+  "$PY" -m pip install -r "$ROOT/requirements/data.txt"
 fi
 if [[ "$REBUILD_INPUTS" == "1" ]]; then
   REBUILD_ARGS=("$ROOT/scripts/rebuild_inputs.py" --download)

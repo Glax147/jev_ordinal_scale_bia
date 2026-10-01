@@ -10,7 +10,7 @@ import shutil
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2] / "posttraining"
 MODELS_ROOT = ROOT / "models"
 MANIFEST_PATH = ROOT / "manifests" / "model_files_manifest.json"
 

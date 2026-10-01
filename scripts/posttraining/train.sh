@@ -2,7 +2,9 @@
 set -euo pipefail
 
 SIZE="${1:-0.8b}"
-PKG_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+PKG_DIR="$REPO_ROOT/posttraining"
+SCRIPT_DIR="$REPO_ROOT/scripts/posttraining"
 DATA="${DATA:-$PKG_DIR/data/prepared/kev_bias_train.jsonl}"
 ANCHOR_DIR="$PKG_DIR/artifacts/anchors"
 RUN_DIR="$PKG_DIR/runs"
@@ -61,12 +63,12 @@ fi
 cd "$PKG_DIR/code/kev"
 if [[ "$ANCHOR_W" != "0" && ! -s "$ANCHOR" ]]; then
   echo "Building frozen original-KEV teacher anchors: $ANCHOR"
-  uv run --no-sync python "$PKG_DIR/scripts/build_kev_teacher_anchors.py" \
+  uv run --no-sync python "$SCRIPT_DIR/build_kev_teacher_anchors.py" \
     --checkpoint "$INIT" --data "$DATA" --out "$ANCHOR" \
     --batch "$BATCH" --max_state "$MAX_STATE" --device cuda --temperature "$BA_TEMP"
 elif [[ "$ANCHOR_W" != "0" ]]; then
   echo "Verifying reusable teacher anchors against the exact data and model trees: $ANCHOR"
-  uv run --no-sync python "$PKG_DIR/scripts/build_kev_teacher_anchors.py" \
+  uv run --no-sync python "$SCRIPT_DIR/build_kev_teacher_anchors.py" \
     --checkpoint "$INIT" --data "$DATA" --out "$ANCHOR" \
     --batch "$BATCH" --max_state "$MAX_STATE" --device cuda --temperature "$BA_TEMP" \
     --verify-existing
