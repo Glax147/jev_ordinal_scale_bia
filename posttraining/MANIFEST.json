@@ -2,11 +2,6 @@
   "checkpoint_replay": "checkpoints-released-full-main40-replay-not-yet-independently-verified",
   "files": [
     {
-      "bytes": 6217,
-      "file": "README.md",
-      "sha256": "6973a1df10d5ee791f50c54cf332a888909ab9a70e9158f61986454f5c964878"
-    },
-    {
       "bytes": 1900011,
       "file": "configs/fixed_train_index_32000.jsonl.gz",
       "sha256": "b57ff04adfb613405e30a1b4c70a78352b9381d25f6ff7837e3359a0edc5aed7"
@@ -138,7 +133,7 @@
     }
   ],
   "hash_algorithm": "sha256",
-  "release_tree_sha256": "611244c795eb2b13a875a7eb0b29ac056a718e2fede7d37ef2e25b7dd737005c",
+  "release_tree_sha256": "7a06cc0c88540d7e963a1028a6a56da976da24128a6be847cae25d92a2db597e",
   "released_checkpoints": [
     {
       "initialization_repository": "jaredpalmer/kev-0.8b",

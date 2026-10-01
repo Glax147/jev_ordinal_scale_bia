@@ -20,9 +20,7 @@ TRACKED_DIRS = (
 )
 ROOT_FILES = (
     ".env.example", ".gitattributes", ".gitignore", ".python-version",
-    "CITATION.cff", "DATASETS.md", "LICENSE", "THIRD_PARTY.md", "pyproject.toml", "README.md",
-    "PUBLIC_RELEASE.json", "data/frozen_inputs/README.md",
-    "posttraining/README.md", "RESULTS.md",
+    "LICENSE", "pyproject.toml", "README.md", "PUBLIC_RELEASE.json",
 )
 ASSET_MANIFESTS = (
     "data/frozen_inputs/MANIFEST.json",
