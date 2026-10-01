@@ -1,0 +1,12 @@
+-r ../requirements.txt
+huggingface-hub==1.32.0
+datasets==3.6.0
+torch==2.8.0
+transformers==5.17.0
+accelerate==1.15.0
+safetensors==0.8.0
+peft==0.21.0
+pydantic==2.12.5
+scikit-learn==1.9.1
+scipy==1.17.1
+kev @ git+https://github.com/jaredpalmer/kev.git@f2bb629d670f5b746f712fc05550a098526c836b

@@ -1,0 +1,18 @@
+# Exact top-level environment used by the released BA-LoRA runs.
+accelerate==1.15.0
+beautifulsoup4==4.14.2
+convokit==3.4.1
+datasets==3.6.0
+huggingface-hub==1.32.0
+numpy==2.5.3
+pandas==3.0.1
+peft==0.21.0
+pyarrow==25.0.1
+pydantic==2.13.5
+requests==2.32.5
+safetensors==0.8.0
+scikit-learn==1.9.1
+setuptools==84.0.0
+torch==2.8.0
+transformers==5.17.0
+wheel==0.46.1

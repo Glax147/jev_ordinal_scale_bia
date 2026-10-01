@@ -1,0 +1,33 @@
+{
+  "schema_version": "paper-v1-frozen-index-v2",
+  "main40": {
+    "file": "data/indexes/main40.paper-v1.jsonl.gz",
+    "rows": 200000,
+    "sha256": "c934e73fb6b5f4101446d4964d694320031da7972770589c9a798b98baeeca37",
+    "archive_bytes": 28894294,
+    "content_sha256": "858b288710e1d3cc351a908d7963da42a34ebc8ceda161792b5c677a09137b37",
+    "content_bytes": 229886671,
+    "ordered_ids_sha256": "33b6041789318df70a974ce393d09092dd79a42ce78569d6b912fb208f48d753",
+    "selection_sha256": "9035ca9d5357f5b9414316971e65b4a850c1c67e212cb5ae4a537a69ce8d33e2"
+  },
+  "position9": {
+    "file": "data/indexes/position9.paper-v1.jsonl.gz",
+    "rows": 90000,
+    "sha256": "7503d7d5a95479ce78141abf833f4d2bdc56bf9148b1a2a57ae37c64d1feaa71",
+    "archive_bytes": 16666939,
+    "content_sha256": "5df75dec4e621a1e080e600126406f4f936aa81bf44b3b2f546c3e18b35e2024",
+    "content_bytes": 129726192,
+    "ordered_ids_sha256": "d86d9243a59d2948f88f58febcec026457ec03c0a8d62c688ca8cdee1e448fab",
+    "selection_sha256": "4dbf3fdcbacd6e941c103d479834d29166b699592c000829052c3510c9c992e2"
+  },
+  "kcurve4": {
+    "file": "data/indexes/kcurve4.paper-v1.jsonl.gz",
+    "rows": 127400,
+    "sha256": "5372986c6493779ac38a51c245553cbfde1eb30940d14373bfbeafa637ed06e7",
+    "archive_bytes": 34970899,
+    "content_sha256": "1ce288da6c37dcf53ead0e3d9e9b6e881e8deb4b3001965489e9dbe5fdaf51a9",
+    "content_bytes": 308202276,
+    "ordered_ids_sha256": "5dec2a21c02adbc1cfded9d1c385fbb21c50e26d4702dcf272ce0f1f5926521d",
+    "selection_sha256": "4eefa8b9d2d7c8c768a9e22e0e45fffbdc0f62bdcb7bfeee6bdfe8e314dedc6a"
+  }
+}

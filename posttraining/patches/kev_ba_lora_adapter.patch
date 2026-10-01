@@ -1,0 +1,189 @@
+diff --git a/kev/train.py b/kev/train.py
+index f72dcc4..05a75fc 100644
+--- a/kev/train.py
++++ b/kev/train.py
+@@ -11,7 +11,7 @@ Batch size is small (variable-length records with custom masks) and gradients ar
+ (per rank: a step sees accum x batch x world size records).
+ """
+ import argparse, contextlib, dataclasses, json, math, os, random, resource, shutil, sys, time
+-from collections import Counter
++from collections import Counter, defaultdict
+ from dataclasses import dataclass
+ from pathlib import Path
+ import torch
+@@ -61,12 +61,17 @@ def question_loss(z, q, dev, ord_w, label_smoothing=0.0, brier_w=0.0, focal_gamm
+     return loss
+ 
+ 
+-def anchor_loss(z, q, target, dev):
+-    """KL(teacher || student) for one question, teacher = frozen base zero-shot distribution keyed by option key.
+-    Skips (returns None) when the current option set is not exactly the teacher's (e.g. a none-option was inserted)."""
++def anchor_loss(z, q, target, dev, temperature=1.0):
++    """Temperature-scaled KL(teacher || student) for one question.
++
++    The target contains frozen-model probabilities computed with the same
++    temperature.  This is the choice-logit counterpart of BA-LoRA's
++    consistency regularizer.  It is skipped when the current option set is
++    not exactly the teacher's (e.g. a none-option was inserted).
++    """
+     if target is None or set(target) != set(q["keys"]): return None
+     t = torch.tensor([target[k] for k in q["keys"]], device=dev, dtype=torch.float32).clamp_min(1e-6); t = t / t.sum()
+-    return F.kl_div(F.log_softmax(z, -1), t, reduction="sum")
++    return F.kl_div(F.log_softmax(z.float() / temperature, -1), t, reduction="sum") * (temperature * temperature)
+ 
+ 
+ def permutation_kl(z1, z2, perm, dev):
+@@ -76,6 +81,66 @@ def permutation_kl(z1, z2, perm, dev):
+     return 0.5 * (F.kl_div(lp2, lp1, log_target=True, reduction="sum") + F.kl_div(lp1, lp2, log_target=True, reduction="sum"))
+ 
+ 
++def ba_diversity_loss(logits):
++    """BA-LoRA diversity regularizer adapted from token logits to option logits."""
++    values = []
++    for z in logits:
++        p = F.softmax(z.float(), -1)
++        values.append((p * p.clamp_min(1e-8).log()).sum())
++    return sum(values) / len(values) if values else None
++
++
++def ba_svd_loss(logits, top_k=10, frobenius=True):
++    """BA-LoRA SVD regularizer specialized to variable-size choice logits.
++
++    The official implementation applies SVD to a rectangular matrix whose
++    rows share one output space. KEV questions can have different numbers of
++    choices, so we form one matrix per K instead of padding or mixing spaces.
++    Group losses are averaged by their number of questions.
++    """
++    groups = defaultdict(list)
++    for z in logits:
++        groups[z.numel()].append(z.float())
++    values, weights = [], []
++    for rows in groups.values():
++        if len(rows) < 2 or rows[0].numel() < 2:
++            continue
++        try:
++            s = torch.linalg.svdvals(torch.stack(rows))
++        except torch.linalg.LinAlgError:
++            continue
++        norm = torch.sqrt(torch.sum(s * s)) if frobenius else torch.sum(s)
++        if norm.detach() > 1e-8:
++            values.append(-torch.sum(s[:min(top_k, len(s))]) / norm)
++            weights.append(len(rows))
++    if not values:
++        return None
++    return sum(v * w for v, w in zip(values, weights)) / sum(weights)
++
++
++def ba_regularization_weights(a, step, total_steps):
++    """Official BA-LoRA cosine and focus schedules for lambda1/2/3."""
++    total_steps = max(total_steps, 1)
++    consistency = a.anchor_w
++    if a.ba_consistency_schedule == "cosine":
++        final = 0.1 * consistency
++        decay = 0.5 * (1.0 + math.cos(math.pi * step / total_steps))
++        consistency = final + (consistency - final) * decay
++
++    focus = 1.0
++    warmup_steps = int(a.ba_warmup_ratio * total_steps)
++    if a.ba_focus_schedule == "two_phase":
++        ramp_steps = max(int(a.ba_ramp_up_ratio * total_steps), 1)
++        if step < warmup_steps:
++            focus = 0.0
++        elif step < warmup_steps + ramp_steps:
++            focus = (step - warmup_steps) / ramp_steps
++    elif a.ba_focus_schedule in ("linear_warmup", "quadratic_warmup") and step < warmup_steps:
++        progress = step / warmup_steps if warmup_steps else 1.0
++        focus = progress if a.ba_focus_schedule == "linear_warmup" else progress * progress
++    return consistency, a.ba_div_w * focus, a.ba_svd_w * focus
++
++
+ def accumulation_records(n, batch, accum, microbatch):
+     start = (microbatch // accum) * accum * batch
+     return min(accum * batch, n - start)
+@@ -339,7 +404,7 @@ def encode_batch(model, tok, a, chunk, epoch, pairs=None):
+     return out
+ 
+ 
+-def batch_loss(model, a, batch, dev, anchors, anchor_sources, autocast):
++def batch_loss(model, a, batch, dev, anchors, anchor_sources, autocast, ba_weights):
+     """Forward the variants and sum the loss terms: mean question loss per variant, the anchor KL per anchored variant,
+     the permutation KL per permuted variant. Returns (loss, terms) with the summed term values for logging."""
+     terms = Counter()
+@@ -347,19 +412,25 @@ def batch_loss(model, a, batch, dev, anchors, anchor_sources, autocast):
+     with autocast:
+         logits_b = model.forward_batch([v.enc for v in batch], a.shared_prefix)
+         logits2_b = model.forward_batch([v.permuted[0] for v in permuted], a.shared_prefix) if permuted else []
++    consistency_w, diversity_w, svd_w = ba_weights
+     loss = 0.0
+     for v, logits in zip(batch, logits_b):
+         ce = sum(question_loss(z.float(), q, dev, a.ord_w, a.label_smoothing, a.brier_w, a.focal_gamma)
+                  for z, q in zip(logits, v.rec["questions"])) / len(logits) * v.share
+         terms["ce"] += ce.item(); loss = loss + ce
+         if anchors and v.request_id in anchors and (anchor_sources is None or v.source in anchor_sources):
+-            kls = [t for t in (anchor_loss(z.float(), q, anchors[v.request_id].get(q["qid"]), dev) for z, q in zip(logits, v.rec["questions"])) if t is not None]
++            kls = [t for t in (anchor_loss(z.float(), q, anchors[v.request_id].get(q["qid"]), dev, a.anchor_temp) for z, q in zip(logits, v.rec["questions"])) if t is not None]
+             if kls:
+-                kl_a = sum(kls) / len(kls) * v.share; loss = loss + a.anchor_w * kl_a; terms["anchor"] += kl_a.item(); terms["anchor_n"] += v.share
++                kl_a = sum(kls) / len(kls) * v.share; loss = loss + consistency_w * kl_a; terms["anchor"] += kl_a.item(); terms["anchor_n"] += v.share
+     for v, logits2 in zip(permuted, logits2_b):
+         logits = logits_b[batch.index(v)]
+         kls = [permutation_kl(z1.float(), z2.float(), perm, dev) for z1, z2, perm in zip(logits, logits2, v.permuted[1]) if perm is not None]
+         kl = sum(kls) / len(kls); loss = loss + a.perm_kl * kl; terms["kl"] += kl.item(); terms["kl_n"] += 1
++    ba_logits = [z for logits in logits_b for z in logits]
++    if diversity_w > 0 and (div := ba_diversity_loss(ba_logits)) is not None:
++        loss = loss + diversity_w * div; terms["ba_div"] += div.item(); terms["ba_div_n"] += 1
++    if svd_w > 0 and (svd := ba_svd_loss(ba_logits, a.ba_svd_k, bool(a.ba_svd_frob_norm))) is not None:
++        loss = loss + svd_w * svd; terms["ba_svd"] += svd.item(); terms["ba_svd_n"] += 1
+     if not torch.isfinite(loss):
+         raise ValueError("non-finite training loss")
+     return loss, terms
+@@ -408,6 +479,15 @@ def parse_args():
+     ap.add_argument("--anchor", default="", help="JSON of frozen-base zero-shot distributions {record_id: {qid: {key: p}}} (kev.anchors); enables the anchoring loss")
+     ap.add_argument("--anchor_w", type=float, default=0.0, help="weight of KL(base || model) toward the frozen base model's zero-shot distribution, per anchored question")
+     ap.add_argument("--anchor_sources", default="", help="comma-separated sources to anchor (default: every record with a target)")
++    ap.add_argument("--anchor_temp", type=float, default=1.0, help="distillation temperature used both to build anchors and train the student")
++    ap.add_argument("--ba_div_w", type=float, default=0.0, help="BA-LoRA diversity weight on option logits")
++    ap.add_argument("--ba_svd_w", type=float, default=0.0, help="BA-LoRA SVD weight on option logits grouped by option count")
++    ap.add_argument("--ba_svd_k", type=int, default=10, help="top singular values used by the BA-LoRA SVD term")
++    ap.add_argument("--ba_svd_frob_norm", type=int, choices=[0, 1], default=1, help="normalize the BA-LoRA SVD term by the Frobenius norm")
++    ap.add_argument("--ba_consistency_schedule", choices=["none", "cosine"], default="none")
++    ap.add_argument("--ba_focus_schedule", choices=["none", "two_phase", "linear_warmup", "quadratic_warmup"], default="none")
++    ap.add_argument("--ba_warmup_ratio", type=float, default=0.2)
++    ap.add_argument("--ba_ramp_up_ratio", type=float, default=0.05)
+     ap.add_argument("--out", default="runs/kev")
+     ap.add_argument("--data", default="", help="your own labelled requests, one JSON object per line (see kev.data.load_records); an alternative to --suite for fine-tuning, or combined with --suite and --replay")
+     ap.add_argument("--max_state", type=int, default=MAX_STATE, help=f"state tokens per training record (default {MAX_STATE}); raising it admits long-state --data records, the packed limit grows by the same amount")
+@@ -442,7 +522,9 @@ def parse_args():
+         ap.error("epochs, accum, n_per_source, lora, batch and synthetic_repeat must be positive; 0 < public_frac <= 1")
+     if a.dtype == "bf16" and a.device != "cuda":
+         ap.error("--dtype bf16 requires --device cuda")
+-    if a.lr <= 0 or a.head_lr < 0 or a.weight_decay < 0 or min(a.ord_w, a.perm_kl, a.anchor_w) < 0 or not 0 <= a.perm_frac <= 1:
++    if (a.lr <= 0 or a.head_lr < 0 or a.weight_decay < 0 or a.anchor_temp <= 0
++            or min(a.ord_w, a.perm_kl, a.anchor_w, a.ba_div_w, a.ba_svd_w) < 0 or a.ba_svd_k < 1
++            or not 0 <= a.perm_frac <= 1 or not 0 <= a.ba_warmup_ratio <= 1 or not 0 <= a.ba_ramp_up_ratio <= 1):
+         ap.error("invalid learning rate or loss weights")
+     loss_options = (a.label_smoothing, a.brier_w, a.focal_gamma)
+     if not all(math.isfinite(v) and v >= 0 for v in loss_options) or a.label_smoothing > 1 or sum(v > 0 for v in loss_options) > 1:
+@@ -622,7 +704,8 @@ def main():
+             # weight by source records in the accumulation group (over all ranks) so none-pair siblings do not inflate a record's share
+             group_records = step_records * (variants / len(chunk))
+             for part in row_passes(batch, a.row_budget, a.shared_prefix):
+-                loss, terms = batch_loss(model, a, part, dev, anchors, anchor_sources, autocast)
++                loss, terms = batch_loss(model, a, part, dev, anchors, anchor_sources, autocast,
++                                         ba_regularization_weights(a, step, steps))
+                 (loss / group_records).backward()
+                 run += terms
+             run["n"] += variants; seen += round(variants); tokens_seen += sum(v.tokens for v in batch)
+@@ -636,7 +719,11 @@ def main():
+                 step_seconds.append(round(time.time() - last, 3)); last = time.time()
+                 if dev == "mps": empty_cache(dev)   # MPS only: per-step cache release keeps the unified-memory footprint down; on CUDA it would just slow the step
+                 if step % 10 == 0:
+-                    print(f"ep{ep} step {step}/{steps} loss {run['ce']/run['n']:.3f} kl {run['kl']/max(run['kl_n'],1):.3f} anchor {run['anchor']/max(run['anchor_n'],1):.3f} {(time.time()-t0)/seen:.3f}s/rec", flush=True)
++                    print(f"ep{ep} step {step}/{steps} loss {run['ce']/run['n']:.3f} "
++                          f"kl {run['kl']/max(run['kl_n'],1):.3f} anchor {run['anchor']/max(run['anchor_n'],1):.3f} "
++                          f"ba_div {run['ba_div']/max(run['ba_div_n'],1):.3f} "
++                          f"ba_svd {run['ba_svd']/max(run['ba_svd_n'],1):.3f} "
++                          f"{(time.time()-t0)/seen:.3f}s/rec", flush=True)
+                     run = Counter()
+                 if step == steps: break
+                 if snapshots and snapshots.due(step):

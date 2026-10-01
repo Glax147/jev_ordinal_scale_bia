@@ -1,0 +1,85 @@
+{
+  "schema_version": "jev-bias-posttraining-v1",
+  "code": {
+    "kev": {
+      "repository": "https://github.com/jaredpalmer/kev.git",
+      "revision": "3e1cd3bb588a388a06827443380befece23e68c7",
+      "patches": [
+        "patches/kev_ba_lora_adapter.patch",
+        "patches/kev_offline_model_bundle.patch"
+      ]
+    },
+    "ba_lora": {
+      "repository": "https://github.com/llm172/BA-LoRA.git",
+      "revision": "1fe17ab3e39dcfefc630cdf386d69d942c61f16c",
+      "role": "reference-only; not imported or executed by the KEV training runtime"
+    }
+  },
+  "models": [
+    {
+      "name": "kev-0.8b",
+      "adapter_repository": "jaredpalmer/kev-0.8b",
+      "adapter_revision": "9a45d25eb2ab761841196625383fa1dff0e56c1e",
+      "base_repository": "Qwen/Qwen3.5-0.8B-Base",
+      "base_revision": "dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68"
+    },
+    {
+      "name": "kev-4b",
+      "adapter_repository": "jaredpalmer/kev-4b",
+      "adapter_revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+      "base_repository": "Qwen/Qwen3.5-4B-Base",
+      "base_revision": "1001bb4d826a52d1f399e183466143f4da7b741b"
+    }
+  ],
+  "released_checkpoints": [
+    {
+      "name": "kev-0.8b-ba-lora",
+      "repository": "Glax147/kev-0.8b-ba-lora",
+      "revision": "6f3864febcef263cd5d520d5520c0c5aa92472f0",
+      "weights_config_revision": "048a489a541cc872f526d2853e592f01dfa99782",
+      "initialization_repository": "jaredpalmer/kev-0.8b",
+      "initialization_revision": "9a45d25eb2ab761841196625383fa1dff0e56c1e"
+    },
+    {
+      "name": "kev-4b-ba-lora",
+      "repository": "Glax147/kev-4b-ba-lora",
+      "revision": "3d5932a57af805c36e3ce51256316997b8494e31",
+      "weights_config_revision": "7945a3045d890bfe8b92a6c283f103fee0b56e76",
+      "initialization_repository": "jaredpalmer/kev-4b",
+      "initialization_revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101"
+    }
+  ],
+  "training_data": {
+    "index": "configs/fixed_train_index_32000.jsonl.gz",
+    "rows": 32000,
+    "datasets": 8,
+    "rows_per_dataset": 4000,
+    "archive_sha256": "b57ff04adfb613405e30a1b4c70a78352b9381d25f6ff7837e3359a0edc5aed7",
+    "decompressed_sha256": "7a79ef705ec1efb6c15579d9ae7bc21dae9cbaf6b003a2d6885389b006c2e440"
+  },
+  "evaluation_data": {
+    "input": "../artifacts/frozen_inputs/main40.jsonl",
+    "index": "../data/indexes/main40.paper-v1.jsonl.gz",
+    "rows": 200000,
+    "datasets": 40,
+    "input_sha256": "3d17d8dd2ac58f8a773c5fc93bebd11f4169b83c84695da05ee19144383ca8e2",
+    "index_sha256": "c934e73fb6b5f4101446d4964d694320031da7972770589c9a798b98baeeca37"
+  },
+  "training": {
+    "method": "BA-LoRA-inspired choice-space adaptation implemented by the pinned KEV patch",
+    "seed": 42,
+    "epochs": 2,
+    "anchor_weight": 0.025,
+    "ba_diversity_weight": 0.005,
+    "ba_svd_weight": 0.005,
+    "ba_temperature": 2.0,
+    "permutation_kl_weight": 0.0,
+    "kev_0.8b": {"batch": 32, "gradient_accumulation": 2, "learning_rate": 2e-5},
+    "kev_4b": {"batch": 8, "gradient_accumulation": 8, "learning_rate": 1.5e-5},
+    "known_limitations": {
+      "legacy_loss_scaling": "Diversity and SVD microbatch means are divided again by accumulation-group records; effective weights depend on microbatch size (about 1/32 for 0.8B and 1/8 for 4B).",
+      "cross_size_interpretation": "Nominal regularization coefficients are not directly comparable across sizes; do not make causal cross-size claims.",
+      "recipe_result_lineage": "Released answers, recipe, and pinned Hugging Face checkpoints are independently hash-verifiable; full 200,000-item checkpoint replay has not yet independently bound each checkpoint to its released answer file."
+    }
+  }
+}

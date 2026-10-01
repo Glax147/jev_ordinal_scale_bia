@@ -1,0 +1,51 @@
+{
+  "kev_code": {
+    "repository": "https://github.com/jaredpalmer/kev.git",
+    "revision": "f2bb629d670f5b746f712fc05550a098526c836b",
+    "note": "Commit recorded for the released baseline evaluation. Install through requirements-kev.txt."
+  },
+  "models": {
+    "kev-0.8b": {
+      "repo_id": "jaredpalmer/kev-0.8b",
+      "revision": "9a45d25eb2ab761841196625383fa1dff0e56c1e",
+      "base_repo_id": "Qwen/Qwen3.5-0.8B-Base",
+      "base_revision": "dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68"
+    },
+    "kev-4b": {
+      "repo_id": "jaredpalmer/kev-4b",
+      "revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+      "base_repo_id": "Qwen/Qwen3.5-4B-Base",
+      "base_revision": "1001bb4d826a52d1f399e183466143f4da7b741b"
+    },
+    "kev-0.8b-ba-lora": {
+      "repo_id": "Glax147/kev-0.8b-ba-lora",
+      "revision": "6f3864febcef263cd5d520d5520c0c5aa92472f0",
+      "weights_config_revision": "048a489a541cc872f526d2853e592f01dfa99782",
+      "initialization_repo_id": "jaredpalmer/kev-0.8b",
+      "initialization_revision": "9a45d25eb2ab761841196625383fa1dff0e56c1e",
+      "base_repo_id": "Qwen/Qwen3.5-0.8B-Base",
+      "base_revision": "dc7cdfe2ee4154fa7e30f5b51ca41bfa40174e68"
+    },
+    "kev-4b-ba-lora": {
+      "repo_id": "Glax147/kev-4b-ba-lora",
+      "revision": "3d5932a57af805c36e3ce51256316997b8494e31",
+      "weights_config_revision": "7945a3045d890bfe8b92a6c283f103fee0b56e76",
+      "initialization_repo_id": "jaredpalmer/kev-4b",
+      "initialization_revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+      "base_repo_id": "Qwen/Qwen3.5-4B-Base",
+      "base_revision": "1001bb4d826a52d1f399e183466143f4da7b741b"
+    },
+    "kev-9b": {
+      "repo_id": "jaredpalmer/kev-9b",
+      "revision": null,
+      "base_repo_id": "Qwen/Qwen3.5-9B-Base",
+      "base_revision": "68c46c4b3498877f3ef123c856ecfde50c39f404",
+      "note": "The exact 9B adapter revision was not recorded in the original run. Strict mode refuses it; --allow-unpinned records the resolved Hub commit but is not an exact paper rerun."
+    },
+    "jev-1.13": {
+      "access": "hosted-api",
+      "requested_model": "jev-1.13",
+      "returned_model": "typesafe/jev-1.13-20260917"
+    }
+  }
+}

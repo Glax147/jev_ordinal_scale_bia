@@ -1,0 +1,151 @@
+{
+  "schema_version": "kev-bias-raw-sources-v1",
+  "hf_sources": {
+    "ibm_argument_quality": {
+      "repo": "ibm-research/argument_quality_ranking_30k",
+      "revision": "590726b3765b1b90c5e53a17e3b1f77d92d3aa8a",
+      "files": [
+        "train.csv",
+        "dev.csv",
+        "test.csv"
+      ]
+    },
+    "helpsteer2_correctness": {
+      "repo": "nvidia/HelpSteer2",
+      "revision": "990b2711a36180dd19d9c94b8627844866f8982a",
+      "files": [
+        "train.jsonl.gz"
+      ]
+    },
+    "civil_comments_toxicity": {
+      "repo": "google/civil_comments",
+      "revision": "f2970eb3a55777454c94069077cc8d9b5866312d",
+      "files": [
+        "data/train-00000-of-00002.parquet",
+        "data/train-00001-of-00002.parquet"
+      ]
+    },
+    "wine_quality": {
+      "repo": "spawn99/wine-reviews",
+      "revision": "e6b10f4db3091a6fed8c5b294c0cc885e7f6e99d",
+      "files": [
+        "data/train-00000-of-00001.parquet"
+      ]
+    },
+    "word_concreteness": {
+      "repo": "StephanAkkerman/concreteness-ratings",
+      "revision": "10f460a4d535800d89c579db7cd2664dbaf6b1d6",
+      "files": [
+        "concreteness_ratings.csv"
+      ]
+    },
+    "wmt20_translation_quality": {
+      "repo": "wmt/wmt20_mlqe_task1",
+      "revision": "0783ed2bd75f44835df4ea664f9ccb85812c8563",
+      "files": [
+        "en-de/train-00000-of-00001.parquet",
+        "en-zh/train-00000-of-00001.parquet",
+        "et-en/train-00000-of-00001.parquet",
+        "ne-en/train-00000-of-00001.parquet",
+        "ro-en/train-00000-of-00001.parquet",
+        "si-en/train-00000-of-00001.parquet"
+      ]
+    },
+    "realtoxicity_continuation": {
+      "repo": "allenai/real-toxicity-prompts",
+      "revision": "f21629712ffd6a3d13a54fd2807ccd521c55ef74",
+      "files": [
+        "prompts.jsonl"
+      ]
+    },
+    "measuring_hate_speech": {
+      "repo": "ucberkeley-dlab/measuring-hate-speech",
+      "revision": "5468f6e118396646b02a2f691e771f6b6d9502ea",
+      "files": [
+        "data/train-00000-of-00001.parquet"
+      ]
+    }
+  },
+  "files": [
+    {
+      "path": "data/raw/civil_comments_toxicity/data/train-00000-of-00002.parquet",
+      "bytes": 193527147,
+      "sha256": "c20f01c3aecbdd942886cacb0ee67e995df33bc712a622fde75927ed3d6ccefe"
+    },
+    {
+      "path": "data/raw/civil_comments_toxicity/data/train-00001-of-00002.parquet",
+      "bytes": 186778090,
+      "sha256": "a76af69d7b24758bc38b196bc422d4767935c1dd7d3c1465554649c546d99ccb"
+    },
+    {
+      "path": "data/raw/helpsteer2_correctness/train.jsonl.gz",
+      "bytes": 11315813,
+      "sha256": "c0d7e91d738d42e8a08070db26c4c09a9c7631308e1f0fd380ff43d130c9f713"
+    },
+    {
+      "path": "data/raw/ibm_argument_quality/dev.csv",
+      "bytes": 594401,
+      "sha256": "067008db955c34d508008bedce4884a07988ff758cef2bcd6584f2857944cfd1"
+    },
+    {
+      "path": "data/raw/ibm_argument_quality/test.csv",
+      "bytes": 1143278,
+      "sha256": "18c0f0491e0206558f24dbe79b91901bd662e5ec2b1bd9d13ab740660b0c196f"
+    },
+    {
+      "path": "data/raw/ibm_argument_quality/train.csv",
+      "bytes": 3806507,
+      "sha256": "55910fd3599ec54c088d4e9c55f745ff814d153f13c1a7c23a4d31f167cf16f7"
+    },
+    {
+      "path": "data/raw/measuring_hate_speech/data/train-00000-of-00001.parquet",
+      "bytes": 20097387,
+      "sha256": "0d65ce8cfb857f5db90e74ce295067bba7473fe12115715f9dd18d2a5f87e976"
+    },
+    {
+      "path": "data/raw/realtoxicity_continuation/prompts.jsonl",
+      "bytes": 67690996,
+      "sha256": "4b6808878edc985fcc6bcb6a2a7239a0fb05420cb495f1f6ca1450da5e35c163"
+    },
+    {
+      "path": "data/raw/wine_quality/data/train-00000-of-00001.parquet",
+      "bytes": 39833926,
+      "sha256": "206876718697536f44129cfb3024ff0667a55f611fd8757a2be56048ea3280d3"
+    },
+    {
+      "path": "data/raw/wmt20_translation_quality/en-de/train-00000-of-00001.parquet",
+      "bytes": 2546319,
+      "sha256": "6bf4b73d23ce18151d271ac893b9343feb213391920ff1c312be1f6bf04f85ba"
+    },
+    {
+      "path": "data/raw/wmt20_translation_quality/en-zh/train-00000-of-00001.parquet",
+      "bytes": 2573869,
+      "sha256": "47d2c387f74e4d90035564763069570f9f24332dafa24514015ae607407a5a7a"
+    },
+    {
+      "path": "data/raw/wmt20_translation_quality/et-en/train-00000-of-00001.parquet",
+      "bytes": 2394410,
+      "sha256": "e0de9f4efe0ab065dd269b6d0515cab2d30b41a04b8d8274a2cb74d880a6ee97"
+    },
+    {
+      "path": "data/raw/wmt20_translation_quality/ne-en/train-00000-of-00001.parquet",
+      "bytes": 2894575,
+      "sha256": "cf5e9dfe450c068970913a30cc8df9d2b2afb7a7d61c624eefb4986bf6a44440"
+    },
+    {
+      "path": "data/raw/wmt20_translation_quality/ro-en/train-00000-of-00001.parquet",
+      "bytes": 2266212,
+      "sha256": "eac9e4652d23dd4603f1dd330b61230ae4cf95d7bd813deb4b4e3747e5dc2ddb"
+    },
+    {
+      "path": "data/raw/wmt20_translation_quality/si-en/train-00000-of-00001.parquet",
+      "bytes": 2826075,
+      "sha256": "c3d196cd6cbd7ce3c053ec4f6228f01155de7af1878c0eede5dedf5584c4c805"
+    },
+    {
+      "path": "data/raw/word_concreteness/concreteness_ratings.csv",
+      "bytes": 1583150,
+      "sha256": "dd0cbb72b2fb0867c0de66a26cfa8624cfbbeb514b90116c969840f01109e453"
+    }
+  ]
+}

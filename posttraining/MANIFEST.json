@@ -1,0 +1,207 @@
+{
+  "checkpoint_replay": "checkpoints-released-full-main40-replay-not-yet-independently-verified",
+  "files": [
+    {
+      "bytes": 1900011,
+      "file": "configs/fixed_train_index_32000.jsonl.gz",
+      "sha256": "b57ff04adfb613405e30a1b4c70a78352b9381d25f6ff7837e3359a0edc5aed7"
+    },
+    {
+      "bytes": 3677,
+      "file": "configs/posttraining.json",
+      "sha256": "3b519dfe02ba6abdfbda1656862f3b4d645be1911a5ac9c32b0d7d80f8432196"
+    },
+    {
+      "bytes": 10208,
+      "file": "manifests/model_files_manifest.json",
+      "sha256": "56720892e1fdefe19b950dc1d8818a1aacd00e062ac8b5abd8e32195323f1389"
+    },
+    {
+      "bytes": 1115,
+      "file": "manifests/prepared_data_manifest.json",
+      "sha256": "8aa1c7682daf7fc1b7e7c388ce8dfe602576c0cd7f3ea40df08756828bb55959"
+    },
+    {
+      "bytes": 5185,
+      "file": "manifests/raw_source_manifest.json",
+      "sha256": "e0a8c11bf0bd4659e5f46ce7ae58155258ca7a01ca339aea8275a0335bd54b86"
+    },
+    {
+      "bytes": 12294,
+      "file": "patches/kev_ba_lora_adapter.patch",
+      "sha256": "94d0dbfd299aa8a8dbd3cfab1a29bce957e693a32bdd14014e17359942730efd"
+    },
+    {
+      "bytes": 4131,
+      "file": "patches/kev_offline_model_bundle.patch",
+      "sha256": "6736e7ad29e79efa26887db4f379b7879b3eae3335b1ca7c8e2e487049ecea65"
+    },
+    {
+      "bytes": 6153,
+      "file": "README.md",
+      "sha256": "408f36123a2c43a48baa9b7a969f217424050b38192b99dfb93081f74d37d121"
+    },
+    {
+      "bytes": 359,
+      "file": "requirements.txt",
+      "sha256": "2f2996776d21b5fe7f418fdd8d282c768a0fb77a49eb0b7c84ef9f0f9eaaba6c"
+    },
+    {
+      "bytes": 18733560,
+      "file": "results/released/kev-0.8b__ba-lora-seed42__main40.jsonl.gz",
+      "sha256": "dfb5a93377708ce211641ec8e53503b33398fe48af30e1f019366f1b4ea8ccd9"
+    },
+    {
+      "bytes": 43202,
+      "file": "results/released/kev-0.8b__ba-lora-seed42__main40__score_summary.json",
+      "sha256": "47fda0d1edbf84492090221a3b3b2ea31774edb37c0b3b7161799b3e99c5ceec"
+    },
+    {
+      "bytes": 18986846,
+      "file": "results/released/kev-4b__ba-lora-seed42__main40.jsonl.gz",
+      "sha256": "7d378b47699a8fa6c748262edadd82c0384d9f6c075eb1e68c721f9d97ad038d"
+    },
+    {
+      "bytes": 43191,
+      "file": "results/released/kev-4b__ba-lora-seed42__main40__score_summary.json",
+      "sha256": "eefdc5c6656f741aa4861273b48220a99e9adf570f167a4ceb6b25e7ed2c79e6"
+    },
+    {
+      "bytes": 9423,
+      "file": "scripts/analyze_changes.py",
+      "sha256": "7786000fef746764aa1b78b8a9261efadca8453d1f071409470b76527c2e35f7"
+    },
+    {
+      "bytes": 1114,
+      "file": "scripts/bootstrap.sh",
+      "sha256": "708c327f369cb74710b80502a9a06254d8d489b6af61e2de2999770b651d3957"
+    },
+    {
+      "bytes": 9483,
+      "file": "scripts/build_kev_teacher_anchors.py",
+      "sha256": "d3b1b0f3c4d89917874216b530ae2c58f670d820e7253774c281cbb360a0338a"
+    },
+    {
+      "bytes": 7284,
+      "file": "scripts/build_manifest.py",
+      "sha256": "99ed140b7073bc2b79861d0c977dd2a825ac4cf917ed9b80d721ecb211242a53"
+    },
+    {
+      "bytes": 3855,
+      "file": "scripts/download_models.py",
+      "sha256": "2b31848f045bb07d473d0e76d89b0e67ab034424aad4519d2cfc6357cf0a1be0"
+    },
+    {
+      "bytes": 4583,
+      "file": "scripts/download_raw_data.py",
+      "sha256": "49ee65b8938f8a333d20d83eda8497369760646233bfb6ec239e3b1b0690ff01"
+    },
+    {
+      "bytes": 16137,
+      "file": "scripts/evaluate_kev_bias40.py",
+      "sha256": "4d5631fd907495fe0afab7b9e3ea2ea4db2a9bd9ad98c5c64d0f4e8d46414b39"
+    },
+    {
+      "bytes": 2162,
+      "file": "scripts/one_click_train.sh",
+      "sha256": "abe324e691ddfd0eccd47299b07a79a4d93f4e9b51dda43b6794a0f17ebe47f2"
+    },
+    {
+      "bytes": 2997,
+      "file": "scripts/package_results.py",
+      "sha256": "3d3e61bfe418c5f87caf66cf141abe779b0cc1d3abe6ff97d8965e55b9b80b12"
+    },
+    {
+      "bytes": 24926,
+      "file": "scripts/prepare_kev_training_data.py",
+      "sha256": "96a87d0dc0be07146a235591f10d9cdccdb7c8b239a45e7408edbfc559aa734a"
+    },
+    {
+      "bytes": 3770,
+      "file": "scripts/run_kev_ba_lora.sh",
+      "sha256": "b7045cea5a2f8e9274aef99cfe4c7a745e6e9c0648225af456f156c9d657beaa"
+    },
+    {
+      "bytes": 2903,
+      "file": "scripts/setup_code.sh",
+      "sha256": "86b1ba1010aecd98ba8bb95bdb03d228600980606b3069c16800539f83beac11"
+    },
+    {
+      "bytes": 3757,
+      "file": "scripts/verify_models.py",
+      "sha256": "238b9b271ba40d1ec5c86b98638f5a01ead8d80dbd9c70ea543ee7c7b942e35f"
+    },
+    {
+      "bytes": 6618,
+      "file": "scripts/verify_package.py",
+      "sha256": "9cb7729707de32528e408c8cd1c6e070278da036ef1aff069ada81a2fe338a9d"
+    }
+  ],
+  "hash_algorithm": "sha256",
+  "release_tree_sha256": "fac87ec7b79fdb4c9a2c57d706063c542c5c9b18a390ab11b0bd9e2fec708c65",
+  "released_checkpoints": [
+    {
+      "initialization_repository": "jaredpalmer/kev-0.8b",
+      "initialization_revision": "9a45d25eb2ab761841196625383fa1dff0e56c1e",
+      "name": "kev-0.8b-ba-lora",
+      "repository": "Glax147/kev-0.8b-ba-lora",
+      "revision": "6f3864febcef263cd5d520d5520c0c5aa92472f0",
+      "weights_config_revision": "048a489a541cc872f526d2853e592f01dfa99782"
+    },
+    {
+      "initialization_repository": "jaredpalmer/kev-4b",
+      "initialization_revision": "139fdd94f1b6a6ad80cc15e08fcb99cac885a101",
+      "name": "kev-4b-ba-lora",
+      "repository": "Glax147/kev-4b-ba-lora",
+      "revision": "3d5932a57af805c36e3ce51256316997b8494e31",
+      "weights_config_revision": "7945a3045d890bfe8b92a6c283f103fee0b56e76"
+    }
+  ],
+  "released_results": [
+    {
+      "canonical_records_sha256": "28a52d7218182c3004d177a8e8ef1baf91baa835a30d110459471138aad09e1a",
+      "file": "results/released/kev-0.8b__ba-lora-seed42__main40.jsonl.gz",
+      "rows": 200000,
+      "sample_ids_ordered_sha256": "33b6041789318df70a974ce393d09092dd79a42ce78569d6b912fb208f48d753",
+      "sha256": "dfb5a93377708ce211641ec8e53503b33398fe48af30e1f019366f1b4ea8ccd9",
+      "statuses": {
+        "ok": 200000
+      },
+      "unique_ids": 200000
+    },
+    {
+      "canonical_records_sha256": "32f2f1f41bbee9b509b5182f0d8f01e26fbf61335e5e36d66a6b522cd11a9905",
+      "file": "results/released/kev-4b__ba-lora-seed42__main40.jsonl.gz",
+      "rows": 200000,
+      "sample_ids_ordered_sha256": "33b6041789318df70a974ce393d09092dd79a42ce78569d6b912fb208f48d753",
+      "sha256": "7d378b47699a8fa6c748262edadd82c0384d9f6c075eb1e68c721f9d97ad038d",
+      "statuses": {
+        "ok": 200000
+      },
+      "unique_ids": 200000
+    }
+  ],
+  "schema_version": "jev-bias-posttraining-release-v1",
+  "shared_assets": {
+    "main40_index": {
+      "bytes": 28894294,
+      "file": "../data/indexes/main40.paper-v1.jsonl.gz",
+      "sample_ids_ordered_sha256": "33b6041789318df70a974ce393d09092dd79a42ce78569d6b912fb208f48d753",
+      "sha256": "c934e73fb6b5f4101446d4964d694320031da7972770589c9a798b98baeeca37"
+    },
+    "main40_input": {
+      "bytes": 329795700,
+      "materialized_file": "../artifacts/frozen_inputs/main40.jsonl",
+      "sample_ids_ordered_sha256": "33b6041789318df70a974ce393d09092dd79a42ce78569d6b912fb208f48d753",
+      "sha256": "3d17d8dd2ac58f8a773c5fc93bebd11f4169b83c84695da05ee19144383ca8e2",
+      "source_manifest": "../data/frozen_inputs/MANIFEST.json",
+      "source_manifest_sha256": "0b3695dc26fc4e1e2f8bcb9bb0c9923f555d6c6e744457e0aff2113f0f987432"
+    }
+  },
+  "training_index": {
+    "archive_sha256": "b57ff04adfb613405e30a1b4c70a78352b9381d25f6ff7837e3359a0edc5aed7",
+    "decompressed_sha256": "7a79ef705ec1efb6c15579d9ae7bc21dae9cbaf6b003a2d6885389b006c2e440",
+    "file": "configs/fixed_train_index_32000.jsonl.gz",
+    "rows": 32000
+  }
+}

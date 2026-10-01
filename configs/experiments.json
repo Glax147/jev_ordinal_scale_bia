@@ -1,0 +1,33 @@
+{
+  "schema_version": "jev-bias-evaluation-v1.0",
+  "experiments": {
+    "main40": {
+      "description": "40 datasets x 5,000 items",
+      "rows": 200000,
+      "index": "data/indexes/main40.paper-v1.jsonl.gz",
+      "models": ["jev-1.13", "kev-0.8b", "kev-4b", "kev-9b"]
+    },
+    "position9": {
+      "description": "9 datasets x 5,000 items x 2 non-identity permutations",
+      "rows": 90000,
+      "index": "data/indexes/position9.paper-v1.jsonl.gz",
+      "models": ["jev-1.13", "kev-0.8b", "kev-4b", "kev-9b"]
+    },
+    "kcurve4": {
+      "description": "3 ordinal sources x 2 binnings plus DBpedia, K=2..14, 1,400 items per condition",
+      "rows": 127400,
+      "index": "data/indexes/kcurve4.paper-v1.jsonl.gz",
+      "models": ["jev-1.13", "kev-0.8b", "kev-4b", "kev-9b"]
+    }
+  },
+  "nominal_sources": ["snips7", "yahoo_answers10", "scotus13", "dbpedia14"],
+  "position_sources": [
+    "civil_comments_toxicity", "helpsteer2_correctness", "ibm_argument_quality",
+    "realtoxicity_continuation", "shp_community_approval", "tripadvisor_hotel_reviews",
+    "dbpedia14", "snips7", "yahoo_answers10"
+  ],
+  "kcurve_sources": [
+    "realtoxicity_continuation", "civil_comments_toxicity",
+    "stsbenchmark_similarity", "dbpedia14"
+  ]
+}

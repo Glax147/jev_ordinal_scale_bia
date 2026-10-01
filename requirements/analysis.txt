@@ -1,0 +1,5 @@
+numpy==2.5.3
+pandas==3.0.1
+matplotlib==3.10.7
+seaborn==0.13.2
+PyYAML==6.0.3

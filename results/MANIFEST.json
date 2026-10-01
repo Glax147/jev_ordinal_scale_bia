@@ -1,0 +1,250 @@
+{
+  "files": [
+    {
+      "archive_bytes": 14771561,
+      "archive_sha256": "9bc9cef764c18a272b11f1a42f9586458db5c57ef92e8d46bcca113ee20b61cd",
+      "bytes": 112675903,
+      "content_sha256": "e0e5f77ecedc5dfeed1b821e35d4ec5a0de3c8a5c6c95a4545d1a7f28aead49c",
+      "decision_digest_sha256": "90595e0d93f1fc90afd05e1cd69d0837e8a04153f174cc98e241b50128f71277",
+      "duplicate_ids": [],
+      "experiment": "kcurve4",
+      "file": "results/released/jev-1.13__choice-count-ablation-4datasets-k2to14__127400.jsonl.gz",
+      "model": "jev-1.13",
+      "ordered_ids_sha256": "82d6381fe564f9965c7a3aa488af5c035d74d061c7662fc56ca83c8f86f8e616",
+      "ordered_prediction_digest_sha256": "071aff53a36103d84248298f8f40f8ed7e4853c1471d93c25b2a1e425d73a159",
+      "prediction_digest_sha256": "89205389657413c00cd06ebdc515e7d904e11b7e44c502243cbdf191f95f35f6",
+      "rows": 127400,
+      "selection_sha256": "4eefa8b9d2d7c8c768a9e22e0e45fffbdc0f62bdcb7bfeee6bdfe8e314dedc6a",
+      "statuses": {
+        "ok": 127400
+      },
+      "unique_ids": 127400
+    },
+    {
+      "archive_bytes": 19090025,
+      "archive_sha256": "ceca4357642336aed2f78c2a105db5f9cd4e37c8e5f3fb850b415c918e283abe",
+      "bytes": 165671128,
+      "content_sha256": "858a9d25145c39bf824d48094a726e12727a760cf592ad592390dafe29bc1970",
+      "decision_digest_sha256": "0020c10e92b28e9e29614d9d04014319fa42b6ec0f137c41cb4af1b8dd542cc1",
+      "duplicate_ids": [],
+      "experiment": "main40",
+      "file": "results/released/jev-1.13__main-40datasets__200000.jsonl.gz",
+      "model": "jev-1.13",
+      "ordered_ids_sha256": "54931b08eca8743915c432626ff958be1740dc9e6aeb390f901ab12998f055e1",
+      "ordered_prediction_digest_sha256": "e0d3253b32074d892551b061b090f9169f64f0c50944ac4434a85edf1e2cb3c8",
+      "prediction_digest_sha256": "0004abb97af391d8a7435873113235410beac79ee89bc5d40033971813244d2f",
+      "rows": 200000,
+      "selection_sha256": "9035ca9d5357f5b9414316971e65b4a850c1c67e212cb5ae4a537a69ce8d33e2",
+      "statuses": {
+        "ok": 200000
+      },
+      "unique_ids": 200000
+    },
+    {
+      "archive_bytes": 9072152,
+      "archive_sha256": "7b9d6843da738e794956ab6cbdf180771468b08bee285f6c74de1e8a2ff9df35",
+      "bytes": 73329627,
+      "content_sha256": "212889725a48b4afce8758e8b25172d29ab48af578956ff1fc0257f19ec16cc1",
+      "decision_digest_sha256": "b0d20c9ae3501aafb5b59edb0259f817e321a0ec89d771049fa022f6b01888c4",
+      "duplicate_ids": [],
+      "experiment": "position9",
+      "file": "results/released/jev-1.13__position-ablation-9datasets__90000.jsonl.gz",
+      "model": "jev-1.13",
+      "ordered_ids_sha256": "93fa70d6f4c2d8e25a3168bd8885e5f56c8010523f9bcaa64ad4762802f37f1b",
+      "ordered_prediction_digest_sha256": "5fcd42d68d2cc694e03be6c68b3e9509fad89d27344d3dc1c38569de0b5b5c99",
+      "prediction_digest_sha256": "7ca1cacba466c32576996aeee57dd08469cb46b1df152880b5cd92b8cf268744",
+      "rows": 90000,
+      "selection_sha256": "4dbf3fdcbacd6e941c103d479834d29166b699592c000829052c3510c9c992e2",
+      "statuses": {
+        "ok": 90000
+      },
+      "unique_ids": 90000
+    },
+    {
+      "archive_bytes": 10551639,
+      "archive_sha256": "d707d9fd07e07b2e4344f7b71f3f62e4c0d8397a2e6cdad5322d606817278a00",
+      "bytes": 103406846,
+      "content_sha256": "a6355b6280db8a1c697b2ee0861e045ca053d5f41e3aa1e54799a00886b9a93e",
+      "decision_digest_sha256": "6e31a2add04cd6d9e6a1e9dab52889daaa5f650f4184a13f6a660b5b378cdfb6",
+      "duplicate_ids": [],
+      "experiment": "kcurve4",
+      "file": "results/released/kev-0.8b__choice-count-ablation-4datasets-k2to14__127400.jsonl.gz",
+      "model": "kev-0.8b",
+      "ordered_ids_sha256": "5dec2a21c02adbc1cfded9d1c385fbb21c50e26d4702dcf272ce0f1f5926521d",
+      "ordered_prediction_digest_sha256": "28a9c3b091caabb1166e9c8a2a9d6620bfbd9bba80e6ebe1dbbc31f1290139d4",
+      "prediction_digest_sha256": "fa24442e07870c541a648e05c4000a002b5fe7261a81ac6c48869a130554d7e5",
+      "rows": 127400,
+      "selection_sha256": "4eefa8b9d2d7c8c768a9e22e0e45fffbdc0f62bdcb7bfeee6bdfe8e314dedc6a",
+      "statuses": {
+        "ok": 127400
+      },
+      "unique_ids": 127400
+    },
+    {
+      "archive_bytes": 13078699,
+      "archive_sha256": "a110ceabec9711b48aca7a2c90a45b0ffbcf5803cc4e69c1445780447f42cf0b",
+      "bytes": 134065452,
+      "content_sha256": "7faab5512006f4914c0e9d0e04284b6f3f2829d1e881ab920bab2f6403f5e6f2",
+      "decision_digest_sha256": "414a67be5e75a44ed48e6dee559dae3a8b55eacdaa2eb00682b864acd5df7500",
+      "duplicate_ids": [],
+      "experiment": "main40",
+      "file": "results/released/kev-0.8b__main-40datasets__200000.jsonl.gz",
+      "model": "kev-0.8b",
+      "ordered_ids_sha256": "33b6041789318df70a974ce393d09092dd79a42ce78569d6b912fb208f48d753",
+      "ordered_prediction_digest_sha256": "908248769ce9e45a4449ea9bdc4c969280b8a284f3113b96ccddaa289716b687",
+      "prediction_digest_sha256": "c2b51d8d57e0ba037ce2b3151ab0aae890484639d8c7405c1f68bd9140e6c463",
+      "rows": 200000,
+      "selection_sha256": "9035ca9d5357f5b9414316971e65b4a850c1c67e212cb5ae4a537a69ce8d33e2",
+      "statuses": {
+        "ok": 199999,
+        "rejected": 1
+      },
+      "unique_ids": 200000
+    },
+    {
+      "archive_bytes": 6694461,
+      "archive_sha256": "54166fdd8575a11603637e44475c8464a58df049e3d36bd6f1faf5aee18a20b4",
+      "bytes": 67234332,
+      "content_sha256": "1fde1c32fc62162bdd2bd024d3fd52d7800b56d19b5cc421cfefc1031818206b",
+      "decision_digest_sha256": "8f5c2fd8e11d247a76b75588d006ed72759ceae752792ffc329c682c033da862",
+      "duplicate_ids": [],
+      "experiment": "position9",
+      "file": "results/released/kev-0.8b__position-ablation-9datasets__90000.jsonl.gz",
+      "model": "kev-0.8b",
+      "ordered_ids_sha256": "d86d9243a59d2948f88f58febcec026457ec03c0a8d62c688ca8cdee1e448fab",
+      "ordered_prediction_digest_sha256": "0ce4e51642855005e3041d3cd0e522f5ef70327dfb22307599af7f7f5a0eef88",
+      "prediction_digest_sha256": "a86a6b8be4a1308c3af065dbf94350ed2c6a10ddb0fc161388bc94887530cd09",
+      "rows": 90000,
+      "selection_sha256": "4dbf3fdcbacd6e941c103d479834d29166b699592c000829052c3510c9c992e2",
+      "statuses": {
+        "ok": 90000
+      },
+      "unique_ids": 90000
+    },
+    {
+      "archive_bytes": 10764162,
+      "archive_sha256": "be05a9ebaad6249654f3abf67591205efcb72de7738637630dc7bbdf2c9def15",
+      "bytes": 103212687,
+      "content_sha256": "5301066026603ea1b698b8687fe57ccbda80211d280149b5b53f5bf248dfb13c",
+      "decision_digest_sha256": "aeb3ad4b2c65e12fadcd5adc0d05f34c3e476216d09e1c235854f4f5cad66dcf",
+      "duplicate_ids": [],
+      "experiment": "kcurve4",
+      "file": "results/released/kev-4b__choice-count-ablation-4datasets-k2to14__127400.jsonl.gz",
+      "model": "kev-4b",
+      "ordered_ids_sha256": "5dec2a21c02adbc1cfded9d1c385fbb21c50e26d4702dcf272ce0f1f5926521d",
+      "ordered_prediction_digest_sha256": "731b35994add9a784f1e2f3a2c8a3959f2447e24819619c4c485141a4adce3d6",
+      "prediction_digest_sha256": "6e846c337143f6eace391b1cd68d87ab95160d46251080626cab395e0a6e00d0",
+      "rows": 127400,
+      "selection_sha256": "4eefa8b9d2d7c8c768a9e22e0e45fffbdc0f62bdcb7bfeee6bdfe8e314dedc6a",
+      "statuses": {
+        "ok": 127400
+      },
+      "unique_ids": 127400
+    },
+    {
+      "archive_bytes": 13082816,
+      "archive_sha256": "49ef85d059c4abc2cc07b8bb1f12463f342a9b56989dea73fb3e012589cd6c08",
+      "bytes": 133639373,
+      "content_sha256": "b5ee403fcc3d3243b4b60a6481a911bf199eb6e84e4fb1f9448737d146a1e493",
+      "decision_digest_sha256": "26f75bd94752d9d867f8e087c2d1ae3bb544d5ffd34347c52b8d148757f59f50",
+      "duplicate_ids": [],
+      "experiment": "main40",
+      "file": "results/released/kev-4b__main-40datasets__200000.jsonl.gz",
+      "model": "kev-4b",
+      "ordered_ids_sha256": "33b6041789318df70a974ce393d09092dd79a42ce78569d6b912fb208f48d753",
+      "ordered_prediction_digest_sha256": "c53582c3e44715d25873b65ab18ddd431e3560afe833f35d3f040665a4956d6a",
+      "prediction_digest_sha256": "59d83a9009a91c86fd70b4e01dba6aac3ec305eb09b4ddce3473376d76927100",
+      "rows": 200000,
+      "selection_sha256": "9035ca9d5357f5b9414316971e65b4a850c1c67e212cb5ae4a537a69ce8d33e2",
+      "statuses": {
+        "ok": 199999,
+        "rejected": 1
+      },
+      "unique_ids": 200000
+    },
+    {
+      "archive_bytes": 6765518,
+      "archive_sha256": "a8d2e978d11630fa4a51747a86eadcada9c59915becaa3ab8ba547dd8799b320",
+      "bytes": 67050710,
+      "content_sha256": "007c90b02c38ec08e4aef7f45b9930f2cac99d974efdd6c97a5695078c0ad0fb",
+      "decision_digest_sha256": "2802aa1958f0ef08897ad25166c18cab1b5cd743daa468893e3f2ce530116bf6",
+      "duplicate_ids": [],
+      "experiment": "position9",
+      "file": "results/released/kev-4b__position-ablation-9datasets__90000.jsonl.gz",
+      "model": "kev-4b",
+      "ordered_ids_sha256": "d86d9243a59d2948f88f58febcec026457ec03c0a8d62c688ca8cdee1e448fab",
+      "ordered_prediction_digest_sha256": "54259a0838e8b02e44d6b8854102483aa814f89c91affe5966dcc0b93d58e68d",
+      "prediction_digest_sha256": "f369a90d255a5814aa7ff28e8ba5419e1c1538be0ce63e8df8f84de8202271c9",
+      "rows": 90000,
+      "selection_sha256": "4dbf3fdcbacd6e941c103d479834d29166b699592c000829052c3510c9c992e2",
+      "statuses": {
+        "ok": 90000
+      },
+      "unique_ids": 90000
+    },
+    {
+      "archive_bytes": 10860791,
+      "archive_sha256": "44dc6f9db53566f8840383e660b49918a515b1260e1c11b4392dd99e4d1c3801",
+      "bytes": 103344171,
+      "content_sha256": "c8fe7e168a3ae4d04204fb22c6815c03766b7381ae53874c0f29fff05ee9c492",
+      "decision_digest_sha256": "d7793afc11476d42889e5956dd800ee3908368c23b4424475fee812561a50484",
+      "duplicate_ids": [],
+      "experiment": "kcurve4",
+      "file": "results/released/kev-9b__choice-count-ablation-4datasets-k2to14__127400.jsonl.gz",
+      "model": "kev-9b",
+      "ordered_ids_sha256": "5dec2a21c02adbc1cfded9d1c385fbb21c50e26d4702dcf272ce0f1f5926521d",
+      "ordered_prediction_digest_sha256": "1b48f25aebecd53134dadbf29a9d39ad9a8c21169b44716c22e5330c0ac1887d",
+      "prediction_digest_sha256": "6e371567835d096b9746b42ae2af35ccdd9f35a8fad510bd605080bf444db095",
+      "rows": 127400,
+      "selection_sha256": "4eefa8b9d2d7c8c768a9e22e0e45fffbdc0f62bdcb7bfeee6bdfe8e314dedc6a",
+      "statuses": {
+        "ok": 127400
+      },
+      "unique_ids": 127400
+    },
+    {
+      "archive_bytes": 13245357,
+      "archive_sha256": "25c80b6fef889da8f99078daadba4eff46e0c92b4f9592da75db1b074d58bc95",
+      "bytes": 133649950,
+      "content_sha256": "3030bb2cce485b88e4d90217c21ed830e8b1c93903935e533f4ee1314c58a53d",
+      "decision_digest_sha256": "5334f805e7417525b4d1807c244c4bc8645ca24c0800e5d1c5ccaa1c10f96989",
+      "duplicate_ids": [],
+      "experiment": "main40",
+      "file": "results/released/kev-9b__main-40datasets__200000.jsonl.gz",
+      "model": "kev-9b",
+      "ordered_ids_sha256": "33b6041789318df70a974ce393d09092dd79a42ce78569d6b912fb208f48d753",
+      "ordered_prediction_digest_sha256": "68956aba46958f782c7cdf91ac50df1533d5a40d52c72a31430f93f5bad8dcaf",
+      "prediction_digest_sha256": "64538abbef4876252e82e81051b4fed7bdbfcd7c4be6cf94ea0db9d22c0fcf68",
+      "rows": 200000,
+      "selection_sha256": "9035ca9d5357f5b9414316971e65b4a850c1c67e212cb5ae4a537a69ce8d33e2",
+      "statuses": {
+        "ok": 199999,
+        "rejected": 1
+      },
+      "unique_ids": 200000
+    },
+    {
+      "archive_bytes": 6833217,
+      "archive_sha256": "83f4723928203b26215cbb3af53fc86f0b69eef1d5b0e26313f1f16933abc78d",
+      "bytes": 67059560,
+      "content_sha256": "39fd534d424e1b58124a621f8cf54e13fd464f51cbce5e10bf1579a953ebdf27",
+      "decision_digest_sha256": "6c90fd3403c05de25e3adef7d90015922f24eb5e8cc586ba1fa1298f411cbc6f",
+      "duplicate_ids": [],
+      "experiment": "position9",
+      "file": "results/released/kev-9b__position-ablation-9datasets__90000.jsonl.gz",
+      "model": "kev-9b",
+      "ordered_ids_sha256": "d86d9243a59d2948f88f58febcec026457ec03c0a8d62c688ca8cdee1e448fab",
+      "ordered_prediction_digest_sha256": "b99faba13b56c9d81917a453b04e2949da763e0b81409c179ac445f30c33e341",
+      "prediction_digest_sha256": "a49a50eab1a69faa4bae58cb1acba8514226b24f071761d800f0183e08a94624",
+      "rows": 90000,
+      "selection_sha256": "4dbf3fdcbacd6e941c103d479834d29166b699592c000829052c3510c9c992e2",
+      "statuses": {
+        "ok": 90000
+      },
+      "unique_ids": 90000
+    }
+  ],
+  "hash_algorithm": "sha256",
+  "note": "archive_sha256 checks the .gz object; content_sha256 checks exact decompressed JSONL; prediction_digest is order-independent, excludes timing/usage/timestamps, normalizes historical schemas, and quantizes probabilities to the shared four-decimal recorded precision; decision_digest excludes probability values.",
+  "schema_version": "jev-released-results-manifest-v2"
+}

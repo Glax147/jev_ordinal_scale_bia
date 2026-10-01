@@ -1,0 +1,28 @@
+{
+  "schema_version": "kev_bias_posttrain_data_v2.0-fixed-index",
+  "selection": "no sampling; all 32,000 frozen source IDs are used for training",
+  "fixed_index": "configs/fixed_train_index_32000.jsonl.gz",
+  "seed": 20260928,
+  "totals": {
+    "selected": 32000,
+    "train": 32000,
+    "validation": 0
+  },
+  "files": {
+    "train": {
+      "path": "data/prepared/kev_bias_train.jsonl",
+      "sha256": "69966900a1c94970048cc89c2c08cfc75405aeb6db4c579470c9a8a113eb8fc2",
+      "bytes": 35911849
+    }
+  },
+  "source_revisions": {
+    "ibm_argument_quality": "590726b",
+    "helpsteer2_correctness": "990b2711a36180dd19d9c94b8627844866f8982a",
+    "civil_comments_toxicity": "f2970eb3a55777454c94069077cc8d9b5866312d",
+    "measuring_hate_speech": "5468f6e118396646b02a2f691e771f6b6d9502ea",
+    "wine_quality": "e6b10f4db3091a6fed8c5b294c0cc885e7f6e99d",
+    "word_concreteness": "10f460a4d535800d89c579db7cd2664dbaf6b1d6",
+    "wmt20_translation_quality": "0783ed2bd75f44835df4ea664f9ccb85812c8563",
+    "realtoxicity_continuation": "f21629712ffd6a3d13a54fd2807ccd521c55ef74"
+  }
+}

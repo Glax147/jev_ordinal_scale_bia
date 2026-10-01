@@ -1,0 +1,83 @@
+diff --git a/kev/checkpoint.py b/kev/checkpoint.py
+index cdaf67f..ed0733c 100644
+--- a/kev/checkpoint.py
++++ b/kev/checkpoint.py
+@@ -25,7 +25,7 @@ from pathlib import Path
+ 
+ import torch
+ 
+-from .model import DecisionModel, is_hybrid, load_tokenizer, pad_id
++from .model import DecisionModel, is_hybrid, load_tokenizer, pad_id, resolve_model_source
+ 
+ HUB_ID = re.compile(r"[\w.-]+/[\w.-]+(@[\w.-]+)?")
+ 
+@@ -39,6 +39,9 @@ def resolve_run(run):
+     with `@` (jaredpalmer/kev-4b@qwen3), downloaded to the HF cache. Returns a str path."""
+     if os.path.isdir(run):
+         return str(run)
++    local = resolve_model_source(run)
++    if local != run:
++        return str(local)
+     from huggingface_hub import snapshot_download
+     repo, _, revision = str(run).partition("@")
+     return snapshot_download(repo, revision=revision or None, allow_patterns=["*.json", "*.safetensors", "*.pt", "*.txt", "*.jinja"])
+@@ -212,7 +215,10 @@ class Checkpoint:
+     def hybrid_base(self):
+         """Whether the base has Gated DeltaNet layers (Qwen3.5), read from its config without loading weights."""
+         from transformers import AutoConfig
+-        return is_hybrid(AutoConfig.from_pretrained(self.meta.base, revision=self.meta.base_revision).get_text_config())
++        source = resolve_model_source(self.meta.base)
++        return is_hybrid(AutoConfig.from_pretrained(
++            source, revision=None if source != self.meta.base else self.meta.base_revision
++        ).get_text_config())
+ 
+     def backend(self, device, opts=LoadOptions()):
+         """The backend `load` will use: LoadOptions.backend resolved ("auto" -> mlx only where it pays and is installed)."""
+diff --git a/kev/model.py b/kev/model.py
+index 44e2895..303b69f 100644
+--- a/kev/model.py
++++ b/kev/model.py
+@@ -52,8 +52,30 @@ class ContextOverflow(ValueError):
+     benchmark counts it as a rejected record for suites scored as published (skip_overlong)."""
+ 
+ 
++def resolve_model_source(name):
++    """Resolve bundled model ids without changing checkpoint metadata.
++
++    KEV checkpoints record their original Hub base id and compare it during a
++    delta warm start.  Keeping that id intact preserves compatibility, while
++    this resolver redirects file access to the optional offline bundle.
++    """
++    root = os.environ.get("KEV_LOCAL_MODEL_ROOT")
++    if not root:
++        return name
++    repo = str(name).partition("@")[0]
++    local_names = {
++        "Qwen/Qwen3.5-0.8B-Base": "qwen3.5-0.8b-base",
++        "Qwen/Qwen3.5-4B-Base": "qwen3.5-4b-base",
++        "jaredpalmer/kev-0.8b": "kev-0.8b",
++        "jaredpalmer/kev-4b": "kev-4b",
++    }
++    candidate = os.path.join(root, local_names.get(repo, ""))
++    return candidate if local_names.get(repo) and os.path.isdir(candidate) else name
++
++
+ def load_tokenizer(name, revision=None):
+-    return AutoTokenizer.from_pretrained(name, revision=revision)
++    source = resolve_model_source(name)
++    return AutoTokenizer.from_pretrained(source, revision=None if source != name else revision)
+ 
+ 
+ def pad_id(tok):
+@@ -231,7 +253,10 @@ class DecisionModel(nn.Module):
+         # dtype: fp32 for training and exact evaluation; bf16 is a serving option for large backbones (8B on a 32 GB Mac)
+         load = {"dtype": dtype, "attn_implementation": attn}
+         if direct_load: load["device_map"] = {"": torch.cuda.current_device() if device == "cuda" else device}   # "cuda": under torchrun, this rank's GPU
+-        self.lm = AutoModel.from_pretrained(weights, **load) if weights else AutoModelForCausalLM.from_pretrained(name, revision=revision, **load).model
++        source = resolve_model_source(name)
++        self.lm = AutoModel.from_pretrained(weights, **load) if weights else AutoModelForCausalLM.from_pretrained(
++            source, revision=None if source != name else revision, **load
++        ).model
+         self.pad_id = pad_id(tok)
+         # hybrid backbones (Qwen3.5: Gated DeltaNet layers, recurrent) cannot honour the block-causal mask, so every
+         # question runs as its own causal row continuing from the state (rows_of). Attention-only backbones keep the

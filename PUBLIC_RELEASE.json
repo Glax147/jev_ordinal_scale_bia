@@ -1,0 +1,17 @@
+{
+  "schema_version": "jev-bias-public-release-v1",
+  "distribution_mode": "code-indexes-hashes-results-without-upstream-text",
+  "omitted_assets": [
+    "data/frozen_inputs/ordinal_bias_20datasets_100000.zip",
+    "data/frozen_inputs/ordinal_bias_batch3_20x5000.zip",
+    "data/frozen_inputs/core9_two_random_orders_90000.zip",
+    "data/frozen_inputs/controlled_k_curve_127400.zip"
+  ],
+  "reason": "Upstream dataset text remains under the original providers' licenses and is not redistributed by this GitHub release.",
+  "reconstruction": {
+    "download": "python scripts/download_datasets.py --sources all --allow-unpinned",
+    "rebuild_and_verify": "python scripts/rebuild_inputs.py --download --allow-unpinned",
+    "output": "artifacts/frozen_inputs",
+    "identity_check": "Every reconstructed prompt must match the committed paper-v1 canonical row SHA-256."
+  }
+}
