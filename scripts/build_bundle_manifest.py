@@ -19,7 +19,7 @@ TRACKED_DIRS = (
     "posttraining/configs", "posttraining/manifests", "posttraining/patches",
 )
 ROOT_FILES = (
-    ".env.example", ".gitattributes", ".gitignore", ".python-version",
+    ".gitattributes", ".gitignore", ".python-version",
     "LICENSE", "pyproject.toml", "README.md", "PUBLIC_RELEASE.json",
 )
 ASSET_MANIFESTS = (

@@ -21,13 +21,8 @@
       "sha256": "df259a9bc5387a182a0e73b7d7d7e8defe0d4f92112474d6c8e6a0a771cac5bd"
     }
   ],
-  "code_config_environment_tree_sha256": "beb8c8279ad6aa4986d8684d09c559be142df264363858a87a48950e0013f069",
+  "code_config_environment_tree_sha256": "444e29b69af670fe348604a48f27cdadf52316ef85bfe328fef54bc3f75ca304",
   "files": [
-    {
-      "bytes": 246,
-      "file": ".env.example",
-      "sha256": "4940c623a353dc754ddd53235158ceba408f181a5dc9ee0eb171c49ec088fb4a"
-    },
     {
       "bytes": 31,
       "file": ".gitattributes",
@@ -139,9 +134,9 @@
       "sha256": "692cf672f46e39987ea956a6cb892336183c2f2c3b28b45ae1983432dc0dbf59"
     },
     {
-      "bytes": 2602,
+      "bytes": 2586,
       "file": "scripts/build_bundle_manifest.py",
-      "sha256": "bb42bc4d217f3ed9c9a66e74a86a72354d7c5ace37a08f5c99ac9f2112ed6839"
+      "sha256": "756151e34e5100011aa39f2714adcceb72d222baecb2325c1d5b0417b1ffbe75"
     },
     {
       "bytes": 7872,
