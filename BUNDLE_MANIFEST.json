@@ -21,7 +21,7 @@
       "sha256": "df259a9bc5387a182a0e73b7d7d7e8defe0d4f92112474d6c8e6a0a771cac5bd"
     }
   ],
-  "code_config_environment_tree_sha256": "444e29b69af670fe348604a48f27cdadf52316ef85bfe328fef54bc3f75ca304",
+  "code_config_environment_tree_sha256": "a719df1d99a236d00484d8df5c9810e9d7f180de8de6f77cf2e077da5be10085",
   "files": [
     {
       "bytes": 31,
@@ -44,9 +44,9 @@
       "sha256": "46183e52eae3add7aa5ff86958631bdaa507498567e707a629b0fbd3f26cbf87"
     },
     {
-      "bytes": 2200,
+      "bytes": 3591,
       "file": "configs/models.json",
-      "sha256": "e2ece6295fd58ad9d0668eccabab0f8ee0c7d4fff71c52586af32057393be8b1"
+      "sha256": "d075404705ef070d0971d93879ec6c1d968701e6ce4a5284452fb4dbc9c59da9"
     },
     {
       "bytes": 6602,
@@ -104,9 +104,9 @@
       "sha256": "4243e0bc054ee87c9867e58f3ca7102587d1ee34a653955e417f930a01e142fd"
     },
     {
-      "bytes": 4246,
+      "bytes": 6984,
       "file": "README.md",
-      "sha256": "652507f57004384ca87e068eabf16a1c609c0bd715167b96417a2a919bc65c37"
+      "sha256": "c3f8bc477c61382cbc04fd64326fc07fe06a2c241406330b24de4792cffe72cb"
     },
     {
       "bytes": 150,
@@ -129,9 +129,14 @@
       "sha256": "2f2996776d21b5fe7f418fdd8d282c768a0fb77a49eb0b7c84ef9f0f9eaaba6c"
     },
     {
-      "bytes": 9791,
+      "bytes": 363,
+      "file": "requirements/startlux.txt",
+      "sha256": "86433b0772b41771842fdf26375c255e695ab612c913df94c10a95f0344940d4"
+    },
+    {
+      "bytes": 14323,
       "file": "scripts/analyze.py",
-      "sha256": "692cf672f46e39987ea956a6cb892336183c2f2c3b28b45ae1983432dc0dbf59"
+      "sha256": "9416d484ac81aad23e79dfa71b7ee1b34016e86f3d19a2e7efab93c39aafd7ea"
     },
     {
       "bytes": 2586,
@@ -154,9 +159,9 @@
       "sha256": "007e54a3c5f5790005384dea02e31dbc6f4209a69cf7079598c2bc4ac5c927c3"
     },
     {
-      "bytes": 4111,
+      "bytes": 4197,
       "file": "scripts/download_models.py",
-      "sha256": "622d07fd8687c100f2030da27e2451697583cafa945c4c57c3a225dd82b661a8"
+      "sha256": "41c046cf9cb68fa3007ab584f395ae5664dd87aea00707c6d4b2019dc356108d"
     },
     {
       "bytes": 502,
@@ -174,9 +179,9 @@
       "sha256": "e1a8fb521a8e50b9ecf02969ee8d4383da299f7bea4c902cc2066b5ecbe30f62"
     },
     {
-      "bytes": 679,
+      "bytes": 864,
       "file": "scripts/one_click.py",
-      "sha256": "7dc02b0ed5f23a9b1469ecb96c9917d4808219bb56f49d46b06c5342c015c9c4"
+      "sha256": "c2c58c8cee242cbfcd6d29038ddbb895379fe8b15196f900f6cff96204465c01"
     },
     {
       "bytes": 9440,
@@ -249,6 +254,11 @@
       "sha256": "f41e8cd49516e8e843f0a3169bde0039ce58070fadd40568c19f553566b1eaa9"
     },
     {
+      "bytes": 4012,
+      "file": "scripts/rebuild_distance_inputs.py",
+      "sha256": "8e3a82e4696a96fd8db036fbe53119cc25f14d5f261ed784c351842d4829a89c"
+    },
+    {
       "bytes": 7916,
       "file": "scripts/rebuild_inputs.py",
       "sha256": "a6987a09d0f92e7b6f5fc14f7f42a7894807e28c7ff980b15c621819fd0a9733"
@@ -262,6 +272,11 @@
       "bytes": 13528,
       "file": "scripts/run_kev_local.py",
       "sha256": "504876def049c57a159ab1a0cb4f4dc70c62bc695fbd4b3358426829a1c40ad7"
+    },
+    {
+      "bytes": 7993,
+      "file": "scripts/run_startlux_local.py",
+      "sha256": "9a61606203d2b2eb365aa6b68cfbc4473028d99c9faef454e9db34755b7294da"
     },
     {
       "bytes": 2980,
@@ -279,14 +294,14 @@
       "sha256": "5fa2abc29359369833e9f4c1f511a182ada1c17f2b08286cd6ae12047101949c"
     },
     {
-      "bytes": 3025,
+      "bytes": 3128,
       "file": "scripts/setup.ps1",
-      "sha256": "e5b70913e38593baeeaed21051625e3a30e2ed30f0ecdaaaf85a354e8f12be82"
+      "sha256": "ce60fd3c2d69b5ec99a24b21f0f956d1a859d0651414451a1c99cfc101f644c5"
     },
     {
-      "bytes": 1780,
+      "bytes": 2141,
       "file": "scripts/setup.sh",
-      "sha256": "4b754bd27ae01fde55853586cfabfd1da0385d168933c7c7c5e816293c7eba84"
+      "sha256": "4b606948f43c604d2fc8f630b2178850a7e5ba69c1f26c52ed06c76a9301c2ee"
     },
     {
       "bytes": 76,
@@ -384,9 +399,9 @@
       "sha256": "79d634fecf22402d0e0547a9712bc1a97b1c69f82e5258dc1522e60a084d17fe"
     },
     {
-      "bytes": 1456,
+      "bytes": 1472,
       "file": "tests/test_public_release.py",
-      "sha256": "38dddcdceea61254d2f688905ab7bce97de3e095a88bc7a96d2d9a785a744e91"
+      "sha256": "93da25ad253450f2863a2512fcccc5609bd42278f9ddc32eae5e1921f96b0fab"
     },
     {
       "bytes": 847,
@@ -397,6 +412,11 @@
       "bytes": 3998,
       "file": "tests/test_sampling.py",
       "sha256": "3b618317c23dc56bb41c86955d74aec82d9c15a527028579024de6f03d53b3d4"
+    },
+    {
+      "bytes": 946,
+      "file": "tests/test_startlux_runner.py",
+      "sha256": "bc9ba7a0ea9bd60d3249cc7c5895a516933caab3c662a48e954c4972f3f5c619"
     }
   ],
   "hash_algorithm": "sha256",

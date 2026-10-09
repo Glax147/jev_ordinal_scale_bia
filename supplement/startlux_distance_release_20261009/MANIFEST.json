@@ -1,0 +1,867 @@
+{
+  "schema_version": "jev-additional-predictions-v1",
+  "hash_algorithm": "sha256",
+  "result_count": 24,
+  "input_indexes": {
+    "main40": {
+      "rows": 200000,
+      "index_sha256": "c934e73fb6b5f4101446d4964d694320031da7972770589c9a798b98baeeca37",
+      "published_index": "data/indexes/main40.paper-v1.jsonl.gz"
+    },
+    "position9": {
+      "rows": 90000,
+      "index_sha256": "7503d7d5a95479ce78141abf833f4d2bdc56bf9148b1a2a57ae37c64d1feaa71",
+      "published_index": "data/indexes/position9.paper-v1.jsonl.gz"
+    },
+    "kcurve4": {
+      "rows": 127400,
+      "index_sha256": "5372986c6493779ac38a51c245553cbfde1eb30940d14373bfbeafa637ed06e7",
+      "published_index": "data/indexes/kcurve4.paper-v1.jsonl.gz"
+    },
+    "distance7": {
+      "file": "data/indexes/candidate_distance_4datasets_7levels.index.jsonl.gz",
+      "rows": 138894,
+      "archive_bytes": 10184907,
+      "archive_sha256": "5b1bf8524076ebfd5d3a2fb7ed6b1f0e19242e0f7a2746caaf6ee53aee64349d",
+      "source_input_sha256": "9614df38664115e420096d6427fc158f390a1ecb59bb205428ca61adc355f6d7",
+      "ordered_ids_sha256": "c98f227bfb4e92408a77067413dacf0d064cfb90f6d5922db00c3f2553e1dd9c"
+    }
+  },
+  "files": [
+    {
+      "file": "results/additional/startlux-0.8b__main-40datasets__200000.jsonl.gz",
+      "model": "startlux-0.8b",
+      "experiment": "main40",
+      "rows": 200000,
+      "unique_ids": 200000,
+      "statuses": {
+        "ok": 200000
+      },
+      "sources": {
+        "amazon_reviews_2023_all_beauty": 5000,
+        "app_reviews": 5000,
+        "asap2": 5000,
+        "beeradvocate_reviews": 5000,
+        "civil_comments_toxicity": 5000,
+        "cmu_mosei_sentiment": 5000,
+        "dbpedia14": 5000,
+        "dynasent": 5000,
+        "emobank_valence": 5000,
+        "goodreads_reviews": 5000,
+        "helpsteer": 5000,
+        "helpsteer2_correctness": 5000,
+        "humicroedit_funniness": 5000,
+        "ibm_argument_quality": 5000,
+        "imdb_ratings": 5000,
+        "labr_arabic_book_reviews": 5000,
+        "measuring_hate_speech": 5000,
+        "meld_sentiment": 5000,
+        "metacritic_games": 5000,
+        "openreview_recommendation": 5000,
+        "persuade2_argument_effectiveness": 5000,
+        "pitchfork_albums": 5000,
+        "realtoxicity_continuation": 5000,
+        "scotus13": 5000,
+        "semeval2018_ei_oc": 5000,
+        "shp_community_approval": 5000,
+        "snips7": 5000,
+        "sst5": 5000,
+        "stackexchange_answer_score": 5000,
+        "stanford_politeness": 5000,
+        "stsbenchmark_similarity": 5000,
+        "tripadvisor_hotel_reviews": 5000,
+        "tweet_eval_sentiment": 5000,
+        "uci_drugs_com": 5000,
+        "ultrafeedback_quality": 5000,
+        "webtext_quality": 5000,
+        "wine_quality": 5000,
+        "wmt20_translation_quality": 5000,
+        "word_concreteness": 5000,
+        "yahoo_answers10": 5000
+      },
+      "input_index_sha256": "c934e73fb6b5f4101446d4964d694320031da7972770589c9a798b98baeeca37",
+      "ordered_ids_sha256": "33b6041789318df70a974ce393d09092dd79a42ce78569d6b912fb208f48d753",
+      "archive_bytes": 19515272,
+      "archive_sha256": "3459ab6325e3e4734300f522bbecfb0ff6ca4c973b9f83727ce8d7a495c1f70a",
+      "source_file_sha256": "10f79e38c2b63a5ad38bfec64059155513f8a28f30b7e2ee12566dede48a8e7e",
+      "source_rows": 200000,
+      "source_statuses": {
+        "ok": 200000
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/startlux-2b__main-40datasets__200000.jsonl.gz",
+      "model": "startlux-2b",
+      "experiment": "main40",
+      "rows": 200000,
+      "unique_ids": 200000,
+      "statuses": {
+        "ok": 200000
+      },
+      "sources": {
+        "amazon_reviews_2023_all_beauty": 5000,
+        "app_reviews": 5000,
+        "asap2": 5000,
+        "beeradvocate_reviews": 5000,
+        "civil_comments_toxicity": 5000,
+        "cmu_mosei_sentiment": 5000,
+        "dbpedia14": 5000,
+        "dynasent": 5000,
+        "emobank_valence": 5000,
+        "goodreads_reviews": 5000,
+        "helpsteer": 5000,
+        "helpsteer2_correctness": 5000,
+        "humicroedit_funniness": 5000,
+        "ibm_argument_quality": 5000,
+        "imdb_ratings": 5000,
+        "labr_arabic_book_reviews": 5000,
+        "measuring_hate_speech": 5000,
+        "meld_sentiment": 5000,
+        "metacritic_games": 5000,
+        "openreview_recommendation": 5000,
+        "persuade2_argument_effectiveness": 5000,
+        "pitchfork_albums": 5000,
+        "realtoxicity_continuation": 5000,
+        "scotus13": 5000,
+        "semeval2018_ei_oc": 5000,
+        "shp_community_approval": 5000,
+        "snips7": 5000,
+        "sst5": 5000,
+        "stackexchange_answer_score": 5000,
+        "stanford_politeness": 5000,
+        "stsbenchmark_similarity": 5000,
+        "tripadvisor_hotel_reviews": 5000,
+        "tweet_eval_sentiment": 5000,
+        "uci_drugs_com": 5000,
+        "ultrafeedback_quality": 5000,
+        "webtext_quality": 5000,
+        "wine_quality": 5000,
+        "wmt20_translation_quality": 5000,
+        "word_concreteness": 5000,
+        "yahoo_answers10": 5000
+      },
+      "input_index_sha256": "c934e73fb6b5f4101446d4964d694320031da7972770589c9a798b98baeeca37",
+      "ordered_ids_sha256": "33b6041789318df70a974ce393d09092dd79a42ce78569d6b912fb208f48d753",
+      "archive_bytes": 19604306,
+      "archive_sha256": "e0867b7b6727cd5a0610fbc018750ac5bd339cf0b778cdc6821050f6a8f3a5fe",
+      "source_file_sha256": "71cec2c3d73ebe753656b93a9d26df13ccd30450b17a0d25babfb94a1f76bd11",
+      "source_rows": 200000,
+      "source_statuses": {
+        "ok": 200000
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/startlux-4b__main-40datasets__200000.jsonl.gz",
+      "model": "startlux-4b",
+      "experiment": "main40",
+      "rows": 200000,
+      "unique_ids": 200000,
+      "statuses": {
+        "ok": 200000
+      },
+      "sources": {
+        "amazon_reviews_2023_all_beauty": 5000,
+        "app_reviews": 5000,
+        "asap2": 5000,
+        "beeradvocate_reviews": 5000,
+        "civil_comments_toxicity": 5000,
+        "cmu_mosei_sentiment": 5000,
+        "dbpedia14": 5000,
+        "dynasent": 5000,
+        "emobank_valence": 5000,
+        "goodreads_reviews": 5000,
+        "helpsteer": 5000,
+        "helpsteer2_correctness": 5000,
+        "humicroedit_funniness": 5000,
+        "ibm_argument_quality": 5000,
+        "imdb_ratings": 5000,
+        "labr_arabic_book_reviews": 5000,
+        "measuring_hate_speech": 5000,
+        "meld_sentiment": 5000,
+        "metacritic_games": 5000,
+        "openreview_recommendation": 5000,
+        "persuade2_argument_effectiveness": 5000,
+        "pitchfork_albums": 5000,
+        "realtoxicity_continuation": 5000,
+        "scotus13": 5000,
+        "semeval2018_ei_oc": 5000,
+        "shp_community_approval": 5000,
+        "snips7": 5000,
+        "sst5": 5000,
+        "stackexchange_answer_score": 5000,
+        "stanford_politeness": 5000,
+        "stsbenchmark_similarity": 5000,
+        "tripadvisor_hotel_reviews": 5000,
+        "tweet_eval_sentiment": 5000,
+        "uci_drugs_com": 5000,
+        "ultrafeedback_quality": 5000,
+        "webtext_quality": 5000,
+        "wine_quality": 5000,
+        "wmt20_translation_quality": 5000,
+        "word_concreteness": 5000,
+        "yahoo_answers10": 5000
+      },
+      "input_index_sha256": "c934e73fb6b5f4101446d4964d694320031da7972770589c9a798b98baeeca37",
+      "ordered_ids_sha256": "33b6041789318df70a974ce393d09092dd79a42ce78569d6b912fb208f48d753",
+      "archive_bytes": 19711939,
+      "archive_sha256": "24dbe98d8d138ccc80edd9f4d061fbe8ee3fdc92fe1c84ee84b34daababe3eb3",
+      "source_file_sha256": "2e9b28c0b39546332cd9791a56fc3111df62db28066167a39ac54d2899d4e0e4",
+      "source_rows": 200000,
+      "source_statuses": {
+        "ok": 200000
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/startlux-9b__main-40datasets__200000.jsonl.gz",
+      "model": "startlux-9b",
+      "experiment": "main40",
+      "rows": 200000,
+      "unique_ids": 200000,
+      "statuses": {
+        "ok": 200000
+      },
+      "sources": {
+        "amazon_reviews_2023_all_beauty": 5000,
+        "app_reviews": 5000,
+        "asap2": 5000,
+        "beeradvocate_reviews": 5000,
+        "civil_comments_toxicity": 5000,
+        "cmu_mosei_sentiment": 5000,
+        "dbpedia14": 5000,
+        "dynasent": 5000,
+        "emobank_valence": 5000,
+        "goodreads_reviews": 5000,
+        "helpsteer": 5000,
+        "helpsteer2_correctness": 5000,
+        "humicroedit_funniness": 5000,
+        "ibm_argument_quality": 5000,
+        "imdb_ratings": 5000,
+        "labr_arabic_book_reviews": 5000,
+        "measuring_hate_speech": 5000,
+        "meld_sentiment": 5000,
+        "metacritic_games": 5000,
+        "openreview_recommendation": 5000,
+        "persuade2_argument_effectiveness": 5000,
+        "pitchfork_albums": 5000,
+        "realtoxicity_continuation": 5000,
+        "scotus13": 5000,
+        "semeval2018_ei_oc": 5000,
+        "shp_community_approval": 5000,
+        "snips7": 5000,
+        "sst5": 5000,
+        "stackexchange_answer_score": 5000,
+        "stanford_politeness": 5000,
+        "stsbenchmark_similarity": 5000,
+        "tripadvisor_hotel_reviews": 5000,
+        "tweet_eval_sentiment": 5000,
+        "uci_drugs_com": 5000,
+        "ultrafeedback_quality": 5000,
+        "webtext_quality": 5000,
+        "wine_quality": 5000,
+        "wmt20_translation_quality": 5000,
+        "word_concreteness": 5000,
+        "yahoo_answers10": 5000
+      },
+      "input_index_sha256": "c934e73fb6b5f4101446d4964d694320031da7972770589c9a798b98baeeca37",
+      "ordered_ids_sha256": "33b6041789318df70a974ce393d09092dd79a42ce78569d6b912fb208f48d753",
+      "archive_bytes": 19789495,
+      "archive_sha256": "0f1fa859b0105fd74c38bef72030bdba4edc6fd51f89b7e35da2cafb3f3f39e8",
+      "source_file_sha256": "4e934e943b29e9be533e62d715f395a8149c41244e07c20ef238697a989d3797",
+      "source_rows": 200000,
+      "source_statuses": {
+        "ok": 200000
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/startlux-27b__main-40datasets__200000.jsonl.gz",
+      "model": "startlux-27b",
+      "experiment": "main40",
+      "rows": 200000,
+      "unique_ids": 200000,
+      "statuses": {
+        "ok": 200000
+      },
+      "sources": {
+        "amazon_reviews_2023_all_beauty": 5000,
+        "app_reviews": 5000,
+        "asap2": 5000,
+        "beeradvocate_reviews": 5000,
+        "civil_comments_toxicity": 5000,
+        "cmu_mosei_sentiment": 5000,
+        "dbpedia14": 5000,
+        "dynasent": 5000,
+        "emobank_valence": 5000,
+        "goodreads_reviews": 5000,
+        "helpsteer": 5000,
+        "helpsteer2_correctness": 5000,
+        "humicroedit_funniness": 5000,
+        "ibm_argument_quality": 5000,
+        "imdb_ratings": 5000,
+        "labr_arabic_book_reviews": 5000,
+        "measuring_hate_speech": 5000,
+        "meld_sentiment": 5000,
+        "metacritic_games": 5000,
+        "openreview_recommendation": 5000,
+        "persuade2_argument_effectiveness": 5000,
+        "pitchfork_albums": 5000,
+        "realtoxicity_continuation": 5000,
+        "scotus13": 5000,
+        "semeval2018_ei_oc": 5000,
+        "shp_community_approval": 5000,
+        "snips7": 5000,
+        "sst5": 5000,
+        "stackexchange_answer_score": 5000,
+        "stanford_politeness": 5000,
+        "stsbenchmark_similarity": 5000,
+        "tripadvisor_hotel_reviews": 5000,
+        "tweet_eval_sentiment": 5000,
+        "uci_drugs_com": 5000,
+        "ultrafeedback_quality": 5000,
+        "webtext_quality": 5000,
+        "wine_quality": 5000,
+        "wmt20_translation_quality": 5000,
+        "word_concreteness": 5000,
+        "yahoo_answers10": 5000
+      },
+      "input_index_sha256": "c934e73fb6b5f4101446d4964d694320031da7972770589c9a798b98baeeca37",
+      "ordered_ids_sha256": "33b6041789318df70a974ce393d09092dd79a42ce78569d6b912fb208f48d753",
+      "archive_bytes": 19812003,
+      "archive_sha256": "5589fdb13174055bbfda6646468a6c6f61b7c337f1a8b2106cb6d82dfc0e299d",
+      "source_file_sha256": "1f61b594c0ccaca284b5f5d0c60c9fa79ea6f215c632486fe931303c6737316e",
+      "source_rows": 200000,
+      "source_statuses": {
+        "ok": 200000
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/startlux-0.8b__position-ablation-9datasets__90000.jsonl.gz",
+      "model": "startlux-0.8b",
+      "experiment": "position9",
+      "rows": 90000,
+      "unique_ids": 90000,
+      "statuses": {
+        "ok": 90000
+      },
+      "sources": {
+        "civil_comments_toxicity": 10000,
+        "dbpedia14": 10000,
+        "helpsteer2_correctness": 10000,
+        "ibm_argument_quality": 10000,
+        "realtoxicity_continuation": 10000,
+        "shp_community_approval": 10000,
+        "snips7": 10000,
+        "tripadvisor_hotel_reviews": 10000,
+        "yahoo_answers10": 10000
+      },
+      "input_index_sha256": "7503d7d5a95479ce78141abf833f4d2bdc56bf9148b1a2a57ae37c64d1feaa71",
+      "ordered_ids_sha256": "d86d9243a59d2948f88f58febcec026457ec03c0a8d62c688ca8cdee1e448fab",
+      "archive_bytes": 10351560,
+      "archive_sha256": "0b70bcd3a310ddd4e85777ab3be68c6fe1388637e223ca73916e47c2ee8953a5",
+      "source_file_sha256": "f7ce158a06cb6232ff947179af13dfd9151f3c9ce91ebcc4fda11f40e95a03d7",
+      "source_rows": 90000,
+      "source_statuses": {
+        "ok": 90000
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/startlux-2b__position-ablation-9datasets__90000.jsonl.gz",
+      "model": "startlux-2b",
+      "experiment": "position9",
+      "rows": 90000,
+      "unique_ids": 90000,
+      "statuses": {
+        "ok": 90000
+      },
+      "sources": {
+        "civil_comments_toxicity": 10000,
+        "dbpedia14": 10000,
+        "helpsteer2_correctness": 10000,
+        "ibm_argument_quality": 10000,
+        "realtoxicity_continuation": 10000,
+        "shp_community_approval": 10000,
+        "snips7": 10000,
+        "tripadvisor_hotel_reviews": 10000,
+        "yahoo_answers10": 10000
+      },
+      "input_index_sha256": "7503d7d5a95479ce78141abf833f4d2bdc56bf9148b1a2a57ae37c64d1feaa71",
+      "ordered_ids_sha256": "d86d9243a59d2948f88f58febcec026457ec03c0a8d62c688ca8cdee1e448fab",
+      "archive_bytes": 10401896,
+      "archive_sha256": "c4017c55ab0df30d3532f21b13e6aebd5d937602aa8ab1507592acf66fadefb5",
+      "source_file_sha256": "a9f4f05a12e6171da805aed8b04f85d036531cadb24dc43220d2f0d0ed6af6e9",
+      "source_rows": 90000,
+      "source_statuses": {
+        "ok": 90000
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/startlux-4b__position-ablation-9datasets__90000.jsonl.gz",
+      "model": "startlux-4b",
+      "experiment": "position9",
+      "rows": 90000,
+      "unique_ids": 90000,
+      "statuses": {
+        "ok": 90000
+      },
+      "sources": {
+        "civil_comments_toxicity": 10000,
+        "dbpedia14": 10000,
+        "helpsteer2_correctness": 10000,
+        "ibm_argument_quality": 10000,
+        "realtoxicity_continuation": 10000,
+        "shp_community_approval": 10000,
+        "snips7": 10000,
+        "tripadvisor_hotel_reviews": 10000,
+        "yahoo_answers10": 10000
+      },
+      "input_index_sha256": "7503d7d5a95479ce78141abf833f4d2bdc56bf9148b1a2a57ae37c64d1feaa71",
+      "ordered_ids_sha256": "d86d9243a59d2948f88f58febcec026457ec03c0a8d62c688ca8cdee1e448fab",
+      "archive_bytes": 10437953,
+      "archive_sha256": "822da7cf593b7ac2555eb324d79dfc64c88d19256e5692adc5bb2872664ab539",
+      "source_file_sha256": "d80df63cb6173082e694e22af511a1e13499f44db6a6e330bb5f53e895e8f69c",
+      "source_rows": 90000,
+      "source_statuses": {
+        "ok": 90000
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/startlux-9b__position-ablation-9datasets__90000.jsonl.gz",
+      "model": "startlux-9b",
+      "experiment": "position9",
+      "rows": 90000,
+      "unique_ids": 90000,
+      "statuses": {
+        "ok": 90000
+      },
+      "sources": {
+        "civil_comments_toxicity": 10000,
+        "dbpedia14": 10000,
+        "helpsteer2_correctness": 10000,
+        "ibm_argument_quality": 10000,
+        "realtoxicity_continuation": 10000,
+        "shp_community_approval": 10000,
+        "snips7": 10000,
+        "tripadvisor_hotel_reviews": 10000,
+        "yahoo_answers10": 10000
+      },
+      "input_index_sha256": "7503d7d5a95479ce78141abf833f4d2bdc56bf9148b1a2a57ae37c64d1feaa71",
+      "ordered_ids_sha256": "d86d9243a59d2948f88f58febcec026457ec03c0a8d62c688ca8cdee1e448fab",
+      "archive_bytes": 10521056,
+      "archive_sha256": "6296743e02c63655d873dcbef9d8e2d082cd30a27450b08cf04268888f70457b",
+      "source_file_sha256": "58b5655aeb5a44966d3a0849807c733ac3fdd7f7aad0f4b4d6f0acc80cebf884",
+      "source_rows": 90000,
+      "source_statuses": {
+        "ok": 90000
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/startlux-27b__position-ablation-9datasets__90000.jsonl.gz",
+      "model": "startlux-27b",
+      "experiment": "position9",
+      "rows": 90000,
+      "unique_ids": 90000,
+      "statuses": {
+        "ok": 90000
+      },
+      "sources": {
+        "civil_comments_toxicity": 10000,
+        "dbpedia14": 10000,
+        "helpsteer2_correctness": 10000,
+        "ibm_argument_quality": 10000,
+        "realtoxicity_continuation": 10000,
+        "shp_community_approval": 10000,
+        "snips7": 10000,
+        "tripadvisor_hotel_reviews": 10000,
+        "yahoo_answers10": 10000
+      },
+      "input_index_sha256": "7503d7d5a95479ce78141abf833f4d2bdc56bf9148b1a2a57ae37c64d1feaa71",
+      "ordered_ids_sha256": "d86d9243a59d2948f88f58febcec026457ec03c0a8d62c688ca8cdee1e448fab",
+      "archive_bytes": 10477914,
+      "archive_sha256": "bd1033558182026a3b14cf5388d04d9a010f4bfe129c12132483b9a233afc5fa",
+      "source_file_sha256": "62880f070d590ed7851fbc52cd82169a9951425e28d2eec9e27cbddc28a1904e",
+      "source_rows": 90000,
+      "source_statuses": {
+        "ok": 90000
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/startlux-0.8b__choice-count-ablation-4datasets-k2to14__127400.jsonl.gz",
+      "model": "startlux-0.8b",
+      "experiment": "kcurve4",
+      "rows": 127400,
+      "unique_ids": 127400,
+      "statuses": {
+        "ok": 127400
+      },
+      "sources": {
+        "civil_comments_toxicity": 36400,
+        "dbpedia14": 18200,
+        "realtoxicity_continuation": 36400,
+        "stsbenchmark_similarity": 36400
+      },
+      "input_index_sha256": "5372986c6493779ac38a51c245553cbfde1eb30940d14373bfbeafa637ed06e7",
+      "ordered_ids_sha256": "5dec2a21c02adbc1cfded9d1c385fbb21c50e26d4702dcf272ce0f1f5926521d",
+      "archive_bytes": 15617801,
+      "archive_sha256": "c8505a738dece16af4c6374e9a006319e4359d5be2270f71758ff02a40aace37",
+      "source_file_sha256": "34f191b5ed0aaa95ebd57d6a6ece2fd867c1b35593315af679f8f65559e94f22",
+      "source_rows": 127400,
+      "source_statuses": {
+        "ok": 127400
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/startlux-2b__choice-count-ablation-4datasets-k2to14__127400.jsonl.gz",
+      "model": "startlux-2b",
+      "experiment": "kcurve4",
+      "rows": 127400,
+      "unique_ids": 127400,
+      "statuses": {
+        "ok": 127400
+      },
+      "sources": {
+        "civil_comments_toxicity": 36400,
+        "dbpedia14": 18200,
+        "realtoxicity_continuation": 36400,
+        "stsbenchmark_similarity": 36400
+      },
+      "input_index_sha256": "5372986c6493779ac38a51c245553cbfde1eb30940d14373bfbeafa637ed06e7",
+      "ordered_ids_sha256": "5dec2a21c02adbc1cfded9d1c385fbb21c50e26d4702dcf272ce0f1f5926521d",
+      "archive_bytes": 15679553,
+      "archive_sha256": "a287d4fa0b94a107a20cbd8f8ccb30be801817c24f1024760cf23d25bd60439e",
+      "source_file_sha256": "927dad0b2689a4a83fb0ec2b7047c4e1c979d5c5bf3151ebba9cf6ba57f847b1",
+      "source_rows": 127400,
+      "source_statuses": {
+        "ok": 127400
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/startlux-4b__choice-count-ablation-4datasets-k2to14__127400.jsonl.gz",
+      "model": "startlux-4b",
+      "experiment": "kcurve4",
+      "rows": 127400,
+      "unique_ids": 127400,
+      "statuses": {
+        "ok": 127400
+      },
+      "sources": {
+        "civil_comments_toxicity": 36400,
+        "dbpedia14": 18200,
+        "realtoxicity_continuation": 36400,
+        "stsbenchmark_similarity": 36400
+      },
+      "input_index_sha256": "5372986c6493779ac38a51c245553cbfde1eb30940d14373bfbeafa637ed06e7",
+      "ordered_ids_sha256": "5dec2a21c02adbc1cfded9d1c385fbb21c50e26d4702dcf272ce0f1f5926521d",
+      "archive_bytes": 15700148,
+      "archive_sha256": "4debd0bd3ee50c4c7dc3d31295c52f90ffa3d7b3750cc781cfd90fd41010af5a",
+      "source_file_sha256": "5caa0891eed150b344aeed2fedc456a6b11908dc646932319184cddf9ea7dd0b",
+      "source_rows": 127400,
+      "source_statuses": {
+        "ok": 127400
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/startlux-9b__choice-count-ablation-4datasets-k2to14__127400.jsonl.gz",
+      "model": "startlux-9b",
+      "experiment": "kcurve4",
+      "rows": 127400,
+      "unique_ids": 127400,
+      "statuses": {
+        "ok": 127400
+      },
+      "sources": {
+        "civil_comments_toxicity": 36400,
+        "dbpedia14": 18200,
+        "realtoxicity_continuation": 36400,
+        "stsbenchmark_similarity": 36400
+      },
+      "input_index_sha256": "5372986c6493779ac38a51c245553cbfde1eb30940d14373bfbeafa637ed06e7",
+      "ordered_ids_sha256": "5dec2a21c02adbc1cfded9d1c385fbb21c50e26d4702dcf272ce0f1f5926521d",
+      "archive_bytes": 15800810,
+      "archive_sha256": "1bd5b5815d638ea3b6db1d1bae24ce8286829ea90664f7f8b121d3649a453b82",
+      "source_file_sha256": "c8996470582a52f21c032159a7b24ef7d3ca9550571cbd8033a752a7a5be0931",
+      "source_rows": 127400,
+      "source_statuses": {
+        "ok": 127400
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/startlux-27b__choice-count-ablation-4datasets-k2to14__127400.jsonl.gz",
+      "model": "startlux-27b",
+      "experiment": "kcurve4",
+      "rows": 127400,
+      "unique_ids": 127400,
+      "statuses": {
+        "ok": 127400
+      },
+      "sources": {
+        "civil_comments_toxicity": 36400,
+        "dbpedia14": 18200,
+        "realtoxicity_continuation": 36400,
+        "stsbenchmark_similarity": 36400
+      },
+      "input_index_sha256": "5372986c6493779ac38a51c245553cbfde1eb30940d14373bfbeafa637ed06e7",
+      "ordered_ids_sha256": "5dec2a21c02adbc1cfded9d1c385fbb21c50e26d4702dcf272ce0f1f5926521d",
+      "archive_bytes": 15764166,
+      "archive_sha256": "921f1007efd53a6a14b3c9bfc71dcaf9f173241e76a5a71da6f9bebe604620b9",
+      "source_file_sha256": "a0a4d910ff125343e4d361b0c8fb332e70eb3171ad298003a24bc0af5f7bf7d5",
+      "source_rows": 127400,
+      "source_statuses": {
+        "ok": 127400
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/startlux-0.8b__distance-ablation-4datasets-7levels__138894.jsonl.gz",
+      "model": "startlux-0.8b",
+      "experiment": "distance7",
+      "rows": 138894,
+      "unique_ids": 138894,
+      "statuses": {
+        "ok": 138894
+      },
+      "sources": {
+        "measuring_hate_speech": 34944,
+        "stanford_politeness": 34398,
+        "wmt20_translation_quality": 34776,
+        "word_concreteness": 34776
+      },
+      "input_index_sha256": "9614df38664115e420096d6427fc158f390a1ecb59bb205428ca61adc355f6d7",
+      "ordered_ids_sha256": "c98f227bfb4e92408a77067413dacf0d064cfb90f6d5922db00c3f2553e1dd9c",
+      "archive_bytes": 6592169,
+      "archive_sha256": "991daffc9a5b9d3a38cc71180ca1a9a58a6bdbcec646746c824845ca725d43d2",
+      "source_file_sha256": "c0857ce3088c8a5cf3286e85ea65d1ce10aa81539d837ee74b010f6e32deeee2",
+      "source_rows": 138894,
+      "source_statuses": {
+        "ok": 138894
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/startlux-2b__distance-ablation-4datasets-7levels__138894.jsonl.gz",
+      "model": "startlux-2b",
+      "experiment": "distance7",
+      "rows": 138894,
+      "unique_ids": 138894,
+      "statuses": {
+        "ok": 138894
+      },
+      "sources": {
+        "measuring_hate_speech": 34944,
+        "stanford_politeness": 34398,
+        "wmt20_translation_quality": 34776,
+        "word_concreteness": 34776
+      },
+      "input_index_sha256": "9614df38664115e420096d6427fc158f390a1ecb59bb205428ca61adc355f6d7",
+      "ordered_ids_sha256": "c98f227bfb4e92408a77067413dacf0d064cfb90f6d5922db00c3f2553e1dd9c",
+      "archive_bytes": 6614516,
+      "archive_sha256": "7c8eaee7c79193a70a4b779c1128a6147fa0b723ebc3c6ce67e171f2199da80d",
+      "source_file_sha256": "64fb78d17b633ed79ddd5efa76f2ce081e022180586a48bcba454d18bf77ac5f",
+      "source_rows": 138894,
+      "source_statuses": {
+        "ok": 138894
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/startlux-4b__distance-ablation-4datasets-7levels__138894.jsonl.gz",
+      "model": "startlux-4b",
+      "experiment": "distance7",
+      "rows": 138894,
+      "unique_ids": 138894,
+      "statuses": {
+        "ok": 138894
+      },
+      "sources": {
+        "measuring_hate_speech": 34944,
+        "stanford_politeness": 34398,
+        "wmt20_translation_quality": 34776,
+        "word_concreteness": 34776
+      },
+      "input_index_sha256": "9614df38664115e420096d6427fc158f390a1ecb59bb205428ca61adc355f6d7",
+      "ordered_ids_sha256": "c98f227bfb4e92408a77067413dacf0d064cfb90f6d5922db00c3f2553e1dd9c",
+      "archive_bytes": 6661897,
+      "archive_sha256": "236946a3c55ac648a9170596255a43ac1dffce5c36d4950921ad7fd285a5fd82",
+      "source_file_sha256": "e4b211f3e66e187447cfad6046112135572815488e0913495983f619d1e40abc",
+      "source_rows": 138894,
+      "source_statuses": {
+        "ok": 138894
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/startlux-9b__distance-ablation-4datasets-7levels__138894.jsonl.gz",
+      "model": "startlux-9b",
+      "experiment": "distance7",
+      "rows": 138894,
+      "unique_ids": 138894,
+      "statuses": {
+        "ok": 138894
+      },
+      "sources": {
+        "measuring_hate_speech": 34944,
+        "stanford_politeness": 34398,
+        "wmt20_translation_quality": 34776,
+        "word_concreteness": 34776
+      },
+      "input_index_sha256": "9614df38664115e420096d6427fc158f390a1ecb59bb205428ca61adc355f6d7",
+      "ordered_ids_sha256": "c98f227bfb4e92408a77067413dacf0d064cfb90f6d5922db00c3f2553e1dd9c",
+      "archive_bytes": 6654976,
+      "archive_sha256": "991c31533ed13b6b38520c501e9e7cb5ec7aeffe4d1d6e78e5019f8ea7dde06e",
+      "source_file_sha256": "bb014a24676adb6f9e60187d39daa097b2658f3294f1d25f7e1a50749cb998e8",
+      "source_rows": 138894,
+      "source_statuses": {
+        "ok": 138894
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/startlux-27b__distance-ablation-4datasets-7levels__138894.jsonl.gz",
+      "model": "startlux-27b",
+      "experiment": "distance7",
+      "rows": 138894,
+      "unique_ids": 138894,
+      "statuses": {
+        "ok": 138894
+      },
+      "sources": {
+        "measuring_hate_speech": 34944,
+        "stanford_politeness": 34398,
+        "wmt20_translation_quality": 34776,
+        "word_concreteness": 34776
+      },
+      "input_index_sha256": "9614df38664115e420096d6427fc158f390a1ecb59bb205428ca61adc355f6d7",
+      "ordered_ids_sha256": "c98f227bfb4e92408a77067413dacf0d064cfb90f6d5922db00c3f2553e1dd9c",
+      "archive_bytes": 6680427,
+      "archive_sha256": "2baa85b3c7c35cb308ddd06c228b308f823a0012e388feb9b8932ffdb7a82070",
+      "source_file_sha256": "e0e217ab74b85235ec76d8d2f8577b667e7c6f92166ef9a0dcc1dbe218befe6e",
+      "source_rows": 138894,
+      "source_statuses": {
+        "ok": 138894
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/kev-0.8b__distance-ablation-4datasets-7levels__138894.jsonl.gz",
+      "model": "kev-0.8b",
+      "experiment": "distance7",
+      "rows": 138894,
+      "unique_ids": 138894,
+      "statuses": {
+        "ok": 138894
+      },
+      "sources": {
+        "measuring_hate_speech": 34944,
+        "stanford_politeness": 34398,
+        "wmt20_translation_quality": 34776,
+        "word_concreteness": 34776
+      },
+      "input_index_sha256": "9614df38664115e420096d6427fc158f390a1ecb59bb205428ca61adc355f6d7",
+      "ordered_ids_sha256": "c98f227bfb4e92408a77067413dacf0d064cfb90f6d5922db00c3f2553e1dd9c",
+      "archive_bytes": 6633064,
+      "archive_sha256": "cce5a269bc5ad63fb3d643fb0f0a972fd5844506e614a3242fa2f306bcc0cdc2",
+      "source_file_sha256": "48a14dcf50fc09c6dfd082c30d1c5f42877f13322624e6864cbfeeda361e454a",
+      "source_rows": 138894,
+      "source_statuses": {
+        "ok": 138894
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/kev-4b__distance-ablation-4datasets-7levels__138894.jsonl.gz",
+      "model": "kev-4b",
+      "experiment": "distance7",
+      "rows": 138894,
+      "unique_ids": 138894,
+      "statuses": {
+        "ok": 138894
+      },
+      "sources": {
+        "measuring_hate_speech": 34944,
+        "stanford_politeness": 34398,
+        "wmt20_translation_quality": 34776,
+        "word_concreteness": 34776
+      },
+      "input_index_sha256": "9614df38664115e420096d6427fc158f390a1ecb59bb205428ca61adc355f6d7",
+      "ordered_ids_sha256": "c98f227bfb4e92408a77067413dacf0d064cfb90f6d5922db00c3f2553e1dd9c",
+      "archive_bytes": 6653296,
+      "archive_sha256": "436572eba7737e39d3462f630a9f3787dccb034f6c1972ffb667e35af9ed0bca",
+      "source_file_sha256": "24d613b8aaf69dc01dfd46f3e0264157124dc4d0c5089574d06ed96aa81b8436",
+      "source_rows": 138894,
+      "source_statuses": {
+        "ok": 138894
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/kev-9b__distance-ablation-4datasets-7levels__138894.jsonl.gz",
+      "model": "kev-9b",
+      "experiment": "distance7",
+      "rows": 138894,
+      "unique_ids": 138894,
+      "statuses": {
+        "ok": 138894
+      },
+      "sources": {
+        "measuring_hate_speech": 34944,
+        "stanford_politeness": 34398,
+        "wmt20_translation_quality": 34776,
+        "word_concreteness": 34776
+      },
+      "input_index_sha256": "9614df38664115e420096d6427fc158f390a1ecb59bb205428ca61adc355f6d7",
+      "ordered_ids_sha256": "c98f227bfb4e92408a77067413dacf0d064cfb90f6d5922db00c3f2553e1dd9c",
+      "archive_bytes": 6673623,
+      "archive_sha256": "4aa0f1cc35630fb11151faacc6402ac7d2a1623433c0bc95ad062a3a66f66398",
+      "source_file_sha256": "a4a54c0700b531c43a2e0f04b48af82b4c90992ad9198f6903acd5a6f9a35245",
+      "source_rows": 138894,
+      "source_statuses": {
+        "ok": 138894
+      },
+      "repeated_ids": 0
+    },
+    {
+      "file": "results/additional/jev-1.13__distance-ablation-3datasets-7levels__104118.jsonl.gz",
+      "model": "jev-1.13",
+      "experiment": "distance7",
+      "rows": 104118,
+      "unique_ids": 104118,
+      "statuses": {
+        "ok": 104118
+      },
+      "sources": {
+        "measuring_hate_speech": 34944,
+        "stanford_politeness": 34398,
+        "wmt20_translation_quality": 34776
+      },
+      "input_index_sha256": "9614df38664115e420096d6427fc158f390a1ecb59bb205428ca61adc355f6d7",
+      "ordered_ids_sha256": "7abb9d0ba99bbd8ca157391f1b82b3e8699a90e016d3ba02971c73d1c16b7ec8",
+      "archive_bytes": 1991485,
+      "archive_sha256": "e5343fd20733d9fb4fc05efdac7b4aa682baff94a4707632b3f2c64611844101",
+      "source_file_sha256": "4eebfdaedf00a0bc724937216c9d60c97a9e934916a8caa677e0a58a4dc8d369",
+      "source_rows": 104119,
+      "source_statuses": {
+        "ok": 104118,
+        "error": 1
+      },
+      "repeated_ids": 1
+    }
+  ],
+  "generator": {
+    "file": "scripts/build_candidate_distance_curve.py",
+    "sha256": "9cb666c8add82a7421a800b3b4def8a712626b85714ff3b94967d53e6fb22829"
+  },
+  "existing_release": "https://github.com/Glax147/jev_ordinal_scale_bia",
+  "format": "one prediction per unique sample_id; zero-based positions; probabilities in presented choice order"
+}

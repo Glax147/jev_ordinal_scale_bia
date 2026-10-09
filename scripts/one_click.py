@@ -20,7 +20,11 @@ def run(*parts: str) -> None:
 def main() -> None:
     run("-m", "pytest", "-q")
     run("scripts/verify_artifacts.py")
-    run("scripts/analyze.py")
+    supplement = ROOT / "supplement" / "startlux_distance_release_20261009"
+    if supplement.is_dir():
+        run("scripts/analyze.py", "--supplement", str(supplement))
+    else:
+        run("scripts/analyze.py")
     run("scripts/make_figures.py")
     print("\nReproduction complete. See outputs/metrics and outputs/figures.")
 

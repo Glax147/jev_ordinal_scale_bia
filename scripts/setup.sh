@@ -8,13 +8,14 @@ MODELS="${MODELS:-}"
 DOWNLOAD_UPSTREAM_DATA="${DOWNLOAD_UPSTREAM_DATA:-0}"
 REBUILD_INPUTS="${REBUILD_INPUTS:-0}"
 ALLOW_UNPINNED_DATA="${ALLOW_UNPINNED_DATA:-0}"
+ALLOW_UNPINNED_MODELS="${ALLOW_UNPINNED_MODELS:-0}"
 
-if [[ "$PROFILE" != "analysis" && "$PROFILE" != "kev" ]]; then
-  echo "PROFILE must be analysis or kev" >&2
+if [[ "$PROFILE" != "analysis" && "$PROFILE" != "kev" && "$PROFILE" != "startlux" ]]; then
+  echo "PROFILE must be analysis, kev or startlux" >&2
   exit 2
 fi
-if [[ -n "$MODELS" && "$PROFILE" != "kev" ]]; then
-  echo "MODELS requires PROFILE=kev" >&2
+if [[ -n "$MODELS" && "$PROFILE" == "analysis" ]]; then
+  echo "MODELS requires PROFILE=kev or startlux" >&2
   exit 2
 fi
 
@@ -26,6 +27,9 @@ PY="$ROOT/.venv/bin/python"
 if [[ "$PROFILE" == "kev" ]]; then
   export PIP_NO_BUILD_ISOLATION=1
   "$PY" -m pip install -r "$ROOT/requirements/kev.txt"
+elif [[ "$PROFILE" == "startlux" ]]; then
+  export PIP_NO_BUILD_ISOLATION=1
+  "$PY" -m pip install -r "$ROOT/requirements/startlux.txt"
 else
   "$PY" -m pip install -r "$ROOT/requirements/base.txt"
 fi
@@ -45,7 +49,9 @@ elif [[ "$DOWNLOAD_UPSTREAM_DATA" == "1" ]]; then
   "$PY" "${DATA_ARGS[@]}"
 fi
 if [[ -n "$MODELS" ]]; then
-  "$PY" "$ROOT/scripts/download_models.py" --models "$MODELS"
+  MODEL_ARGS=("$ROOT/scripts/download_models.py" --models "$MODELS")
+  if [[ "$ALLOW_UNPINNED_MODELS" == "1" ]]; then MODEL_ARGS+=(--allow-unpinned); fi
+  "$PY" "${MODEL_ARGS[@]}"
 fi
 "$PY" "$ROOT/scripts/verify_artifacts.py"
 echo "Bundle ready. Python: $PY"

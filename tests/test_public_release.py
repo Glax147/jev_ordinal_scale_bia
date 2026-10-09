@@ -11,7 +11,7 @@ def test_scripts_and_requirements_are_centralized():
     assert not list(ROOT.glob("requirements*.txt"))
     assert not (ROOT / "posttraining" / "scripts").exists()
     assert {path.name for path in (ROOT / "requirements").glob("*.txt")} == {
-        "base.txt", "data.txt", "kev.txt", "posttraining.txt"
+        "base.txt", "data.txt", "kev.txt", "posttraining.txt", "startlux.txt"
     }
     assert (ROOT / "scripts" / "setup.sh").is_file()
     assert (ROOT / "scripts" / "setup.ps1").is_file()

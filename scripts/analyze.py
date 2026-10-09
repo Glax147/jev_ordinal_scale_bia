@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Recompute the released main, position, and candidate-count metrics."""
+"""Recompute the released main, position, candidate-count, and distance metrics."""
 
 from __future__ import annotations
 
@@ -16,17 +16,23 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from jev_bias.io import iter_jsonl
+from jev_bias.integrity import scan_gzip_jsonl
 from jev_bias.metrics import summarize
-from jev_bias.results import load_latest, probability_vector
+from jev_bias.results import load_latest, normalize_result, probability_vector
 
 MODELS = ["jev-1.13", "kev-0.8b", "kev-4b", "kev-9b"]
+STARTLUX = ["startlux-0.8b", "startlux-2b", "startlux-4b", "startlux-9b", "startlux-27b"]
 NOMINAL = {"snips7", "yahoo_answers10", "scotus13", "dbpedia14"}
+ADDITIONAL_RESULTS: Path | None = None
 
 
 def result_file(results: Path, model: str, experiment: str) -> Path:
     tokens = {"main": "main-40datasets", "position": "position-ablation-9datasets",
-              "kcurve": "choice-count-ablation-4datasets-k2to14"}
-    matches = sorted(results.glob(f"{model}__{tokens[experiment]}__*.jsonl.gz"))
+              "kcurve": "choice-count-ablation-4datasets-k2to14",
+              "distance": "distance-ablation-*"}
+    roots = [results] + ([ADDITIONAL_RESULTS] if ADDITIONAL_RESULTS is not None else [])
+    matches = sorted(path for root in roots for path in root.glob(
+        f"{model}__{tokens[experiment]}__*.jsonl.gz"))
     if len(matches) != 1:
         raise FileNotFoundError(f"Expected one {model}/{experiment} file in {results}; found {matches}")
     return matches[0]
@@ -171,12 +177,82 @@ def kcurve_metrics(results: Path, indexes: Path) -> pd.DataFrame:
     return pd.DataFrame(records)
 
 
+def verify_supplement(supplement: Path, indexes: Path) -> dict:
+    manifest = json.loads((supplement / "MANIFEST.json").read_text(encoding="utf-8"))
+    if manifest.get("schema_version") != "jev-additional-predictions-v1" or len(manifest["files"]) != 24:
+        raise RuntimeError("Unrecognized or incomplete supplementary release")
+    for name, spec in manifest["input_indexes"].items():
+        path = (supplement / spec["file"]) if name == "distance7" else (indexes / Path(spec["published_index"]).name)
+        observed = scan_gzip_jsonl(path)
+        expected_hash = spec["archive_sha256"] if name == "distance7" else spec["index_sha256"]
+        if observed["archive_sha256"] != expected_hash or observed["rows"] != spec["rows"]:
+            raise RuntimeError(f"Supplement index failed hash or row-count verification: {name}")
+    from jev_bias.io import sha256_file
+    generator = manifest["generator"]
+    if sha256_file(supplement / generator["file"]) != generator["sha256"]:
+        raise RuntimeError("Supplement generator hash mismatch")
+    for spec in manifest["files"]:
+        path = supplement / spec["file"]
+        observed = scan_gzip_jsonl(path)
+        if (observed["archive_sha256"] != spec["archive_sha256"]
+                or observed["rows"] != spec["rows"]
+                or observed["unique_ids"] != spec["unique_ids"]
+                or observed["ordered_ids_sha256"] != spec["ordered_ids_sha256"]):
+            raise RuntimeError(f"Supplement result failed integrity verification: {path.name}")
+    return manifest
+
+
+def distance_metrics(results: Path, index_path: Path) -> pd.DataFrame:
+    index = load_index(index_path)
+    records = []
+    for model in MODELS:
+        groups = defaultdict(list)
+        for raw in iter_jsonl(result_file(results, model, "distance")):
+            row = normalize_result(raw)
+            if row["status"] != "ok":
+                continue
+            meta = index[row["sample_id"]]
+            ranks = [int(value) for value in meta["choice_to_original_rank"]]
+            to_ordinal = {rank: i for i, rank in enumerate(sorted(ranks))}
+            probabilities = row["probabilities"]
+            ordinal_probs = None
+            if probabilities is not None:
+                ordinal_probs = [0.0] * len(ranks)
+                for position, rank in enumerate(ranks):
+                    ordinal_probs[to_ordinal[rank]] = probabilities[position]
+            groups[(meta["source"], int(meta["distance_level"]))].append({
+                "gold": int(meta["gold_ordinal_rank_among_shown"]),
+                "pred": to_ordinal[ranks[row["pred_position"]]],
+                "probs": ordinal_probs,
+                "k": len(ranks),
+            })
+        for (source, level), rows in sorted(groups.items()):
+            k = rows[0]["k"]
+            records.append({"model": model, "source": source, "distance_level": level,
+                            **metrics_for(rows, True, k)})
+    return pd.DataFrame(records)
+
+
 def main() -> None:
+    global ADDITIONAL_RESULTS, MODELS
     parser = argparse.ArgumentParser()
     parser.add_argument("--results", type=Path, default=ROOT / "results" / "released")
     parser.add_argument("--indexes", type=Path, default=ROOT / "data" / "indexes")
     parser.add_argument("--output", type=Path, default=ROOT / "outputs" / "metrics")
+    parser.add_argument("--supplement", type=Path,
+                        help="Path to the StartLux and seven-level distance supplement")
+    parser.add_argument("--verify-only", action="store_true",
+                        help="Verify the supplement's archive hashes and row counts without analyzing")
     args = parser.parse_args()
+    if args.supplement:
+        manifest = verify_supplement(args.supplement, args.indexes)
+        ADDITIONAL_RESULTS = args.supplement / "results" / "additional"
+        MODELS = MODELS + STARTLUX
+        print(f"Verified {len(manifest['files'])} supplementary result archives")
+    elif args.verify_only:
+        parser.error("--verify-only requires --supplement")
+    if args.verify_only:
+        return
     args.output.mkdir(parents=True, exist_ok=True)
     main_detail, main_macro, main_groups = main_metrics(args.results, args.indexes)
     position = position_metrics(args.results, args.indexes, main_detail, main_groups)
@@ -187,6 +263,12 @@ def main() -> None:
         (args.output / f"{name}.json").write_text(
             json.dumps(frame.replace({np.nan: None}).to_dict(orient="records"), ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
+        )
+    if args.supplement:
+        distance = distance_metrics(args.results, args.supplement / manifest["input_indexes"]["distance7"]["file"])
+        distance.to_csv(args.output / "distance_by_condition.csv", index=False, encoding="utf-8")
+        (args.output / "distance_by_condition.json").write_text(
+            distance.to_json(orient="records", force_ascii=False, indent=2) + "\n", encoding="utf-8"
         )
     print(main_macro.to_string(index=False))
     print(f"Wrote metrics to {args.output}")

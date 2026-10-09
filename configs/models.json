@@ -42,6 +42,36 @@
       "base_revision": "68c46c4b3498877f3ef123c856ecfde50c39f404",
       "note": "The exact 9B adapter revision was not recorded in the original run. Strict mode refuses it; --allow-unpinned records the resolved Hub commit but is not an exact paper rerun."
     },
+    "startlux-0.8b": {
+      "kind": "standalone",
+      "repo_id": "startlux-models/StartLux-Decision-0.8B",
+      "revision": null,
+      "note": "The exact snapshot used in the historical run was not recorded; --allow-unpinned resolves and records the current snapshot."
+    },
+    "startlux-2b": {
+      "kind": "standalone",
+      "repo_id": "startlux-models/StartLux-Decision-2B",
+      "revision": null,
+      "note": "The exact snapshot used in the historical run was not recorded; --allow-unpinned resolves and records the current snapshot."
+    },
+    "startlux-4b": {
+      "kind": "standalone",
+      "repo_id": "startlux-models/StartLux-Decision-4B",
+      "revision": null,
+      "note": "The exact snapshot used in the historical run was not recorded; --allow-unpinned resolves and records the current snapshot."
+    },
+    "startlux-9b": {
+      "kind": "standalone",
+      "repo_id": "startlux-models/StartLux-Decision-9B",
+      "revision": null,
+      "note": "The exact snapshot used in the historical run was not recorded; --allow-unpinned resolves and records the current snapshot."
+    },
+    "startlux-27b": {
+      "kind": "standalone",
+      "repo_id": "startlux-models/StartLux-Decision-27B",
+      "revision": null,
+      "note": "The exact snapshot used in the historical run was not recorded; --allow-unpinned resolves and records the current snapshot."
+    },
     "jev-1.13": {
       "access": "hosted-api",
       "requested_model": "jev-1.13",

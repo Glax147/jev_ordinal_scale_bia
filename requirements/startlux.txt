@@ -1,0 +1,11 @@
+-r base.txt
+# StartLux's upstream inference requirements (CUDA kernels apply on Linux).
+# Exact model snapshot revisions are recorded by scripts/download_models.py.
+torch>=2.8
+transformers>=5.8
+huggingface-hub==1.32.0
+safetensors>=0.4
+pillow>=10
+torchvision>=0.23
+flash-linear-attention>=0.5.2; sys_platform == "linux"
+causal-conv1d>=1.7; sys_platform == "linux"

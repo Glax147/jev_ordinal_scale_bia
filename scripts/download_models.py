@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Download pinned KEV checkpoints from Hugging Face."""
+"""Download KEV or StartLux checkpoints from Hugging Face with provenance."""
 
 from __future__ import annotations
 
@@ -18,13 +18,12 @@ from jev_bias.integrity import tree_manifest
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--models", default="kev-0.8b,kev-4b",
-                        help=("Comma-separated KEV adapters, including kev-0.8b-ba-lora and "
-                              "kev-4b-ba-lora; exact defaults exclude the unpinned 9B adapter"))
+                        help="Comma-separated model IDs from configs/models.json")
     parser.add_argument("--output", type=Path, default=ROOT / "artifacts" / "models",
-                        help="Self-contained Hugging Face home used by run_kev_local.py")
+                        help="Self-contained Hugging Face home used by the local inference runners")
     parser.add_argument("--hf-endpoint", default=os.environ.get("HF_ENDPOINT") or None)
     parser.add_argument("--allow-unpinned", action="store_true",
-                        help="Required for KEV-9B until its paper-run revision is identified")
+                        help="Required for any model whose historical paper-run revision was not recorded")
     args = parser.parse_args()
     args.output = args.output.resolve()
     os.environ["HF_HOME"] = str(args.output)
@@ -45,15 +44,18 @@ def main() -> None:
     api = HfApi(endpoint=args.hf_endpoint)
     for name in selected:
         if name not in models or "repo_id" not in models[name]:
-            raise SystemExit(f"Unknown downloadable KEV model: {name}")
+            raise SystemExit(f"Unknown downloadable model: {name}")
         spec = models[name]
         revision = spec.get("revision")
         if not revision and not args.allow_unpinned:
             raise SystemExit(f"{name} has no recorded paper-run revision; rerun with --allow-unpinned or pin configs/models.json")
-        artifacts = [
-            ("adapter", spec["repo_id"], revision),
-            ("base", spec["base_repo_id"], spec["base_revision"]),
-        ]
+        if spec.get("kind") == "standalone":
+            artifacts = [("weights", spec["repo_id"], revision)]
+        else:
+            artifacts = [
+                ("adapter", spec["repo_id"], revision),
+                ("base", spec["base_repo_id"], spec["base_revision"]),
+            ]
         for role, repo_id, requested_revision in artifacts:
             info = api.model_info(repo_id, revision=requested_revision)
             resolved_revision = info.sha
@@ -78,7 +80,7 @@ def main() -> None:
                 "tree_sha256": tree["tree_sha256"],
                 "file_count": tree["file_count"],
                 "files": tree["files"],
-                "exact_paper_revision": bool(revision) if role == "adapter" else True,
+                "exact_paper_revision": bool(revision) if role in {"adapter", "weights"} else True,
             }
             print(f"Downloaded {name} {role}: {repo_id}@{resolved_revision} ({tree['file_count']} files)")
     manifest_path.write_text(

@@ -16,7 +16,7 @@ This repository contains the frozen sample indexes, released predictions, analys
 | Position intervention: 9 datasets | 90,000 |
 | Controlled candidate-count experiment: 4 datasets | 127,400 |
 
-Released predictions cover JEV 1.13 and KEV-0.8B/4B/9B. Raw source text and third-party base-model weights are not redistributed.
+The original release covers JEV 1.13 and KEV-0.8B/4B/9B. The `supplement/startlux_distance_release_20261009/` release adds five StartLux sizes to those three experiments and a seven-level candidate-distance experiment for all nine models. The latter has four datasets for StartLux/KEV and three for JEV (Word Concreteness was not run for JEV). Raw source text and third-party model weights are not redistributed.
 
 ## Reproduce metrics and figures
 
@@ -39,6 +39,14 @@ PYTHON_BIN=python3.13 bash scripts/setup.sh
 
 Tables and figures are written to `outputs/`.
 
+To verify and analyze the additional results:
+
+```bash
+python scripts/analyze.py --supplement supplement/startlux_distance_release_20261009
+```
+
+The supplement contains 24 compressed prediction files, a text-free item index, and SHA-256/row-count manifests. The analysis writes `distance_by_condition.csv` alongside the extended main, position, and candidate-count tables. Use `--verify-only` to check the supplement without recomputing metrics.
+
 ## Reconstruct evaluation prompts
 
 ```bash
@@ -48,6 +56,17 @@ python scripts/verify_artifacts.py
 ```
 
 The reconstructed prompts are written to `artifacts/frozen_inputs/` and must match the released hashes. Exact historical source revisions are unavailable for EmoBank Valence and Stanford Politeness; if their upstream data changed, verification will fail rather than silently accept different rows.
+
+For just the four candidate-distance sources, download and reconstruct the 20,000 frozen base items, then generate the seven-level versions:
+
+```bash
+python -m pip install -r requirements/data.txt
+python scripts/rebuild_distance_inputs.py --download --allow-unpinned
+```
+
+This runs `download_datasets.py` for Word Concreteness, WMT20 Translation Quality, Measuring Hate Speech, and Stanford Politeness only, reconstructs each base item against its committed hash, and checks the generated 138,894-item file against the release SHA-256. The output is `artifacts/frozen_inputs/distance7.jsonl`. Stanford Politeness lacks a recorded historical snapshot revision, so current upstream content may fail the hash check. The released text-free index still supports exact analysis in that case. WMT20's dataset card lists its license as unknown; the derived file containing source text is therefore not redistributed here.
+
+If `main40.jsonl` was already reconstructed, use `python scripts/rebuild_distance_inputs.py --base-input artifacts/frozen_inputs/main40.jsonl` to avoid downloading those sources again.
 
 ## Rerun KEV inference
 
@@ -59,6 +78,17 @@ python scripts/run_kev_local.py --model kev-0.8b --input artifacts/frozen_inputs
 ```
 
 The released configuration pins KEV-0.8B and KEV-4B revisions. The historical KEV-9B revision was not recorded, so strict replay excludes it.
+
+## Rerun StartLux inference
+
+```bash
+python -m pip install -r requirements/startlux.txt
+python -m pip install --no-deps -e .
+python scripts/download_models.py --models startlux-0.8b,startlux-2b,startlux-4b,startlux-9b,startlux-27b --allow-unpinned
+python scripts/run_startlux_local.py --model startlux-0.8b --input artifacts/frozen_inputs/distance7.jsonl --output outputs/startlux-0.8b-distance7.jsonl
+```
+
+The downloader gets the official checkpoints and their bundled inference package, then records resolved Hugging Face commits and file hashes. The inference runner preserves candidate order, omits gold labels from requests, and can resume an interrupted output. Historical StartLux checkpoint revisions and some runtime settings were not recorded, so this is a **reference rerun**, not a claim of byte-identical predictions. Run the five sizes separately; 27B requires substantially more GPU memory.
 
 ## Rerun JEV inference
 

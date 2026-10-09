@@ -1,7 +1,7 @@
 [CmdletBinding()]
 param(
     [string]$Python = "py -3.13",
-    [ValidateSet("analysis", "kev")]
+    [ValidateSet("analysis", "kev", "startlux")]
     [string]$Profile = "analysis",
     [string]$Models = "",
     [switch]$AllowUnpinnedModels,
@@ -25,9 +25,9 @@ if (-not (Test-Path -LiteralPath $Venv)) {
 $VenvPython = Join-Path $Venv "Scripts\python.exe"
 & $VenvPython -c "import sys; raise SystemExit(0 if sys.version_info[:2] == (3, 13) else 'Python 3.13 is required')"
 if ($LASTEXITCODE -ne 0) { throw "Python 3.13 is required by this bundle." }
-$Requirements = if ($Profile -eq "kev") { "requirements\kev.txt" } else { "requirements\base.txt" }
-if ($Models -and $Profile -ne "kev") {
-    throw "Model download/rerun dependencies require -Profile kev."
+$Requirements = if ($Profile -eq "kev") { "requirements\kev.txt" } elseif ($Profile -eq "startlux") { "requirements\startlux.txt" } else { "requirements\base.txt" }
+if ($Models -and $Profile -eq "analysis") {
+    throw "Model download/rerun dependencies require -Profile kev or -Profile startlux."
 }
 if ($Profile -eq "kev") { $env:PIP_NO_BUILD_ISOLATION = "1" }
 & $VenvPython -m pip install -r (Join-Path $Repo $Requirements)
